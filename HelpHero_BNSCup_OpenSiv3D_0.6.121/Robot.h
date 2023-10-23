@@ -3,7 +3,7 @@
 class Player;
 class Robot
 {
-	Vec2 pos = { 400,-700 };
+	Vec2 pos = { 100,-700 };
 	bool ready = true;
 	Rect robotRect = { 400,-700,150,800 };
 	float speed = 100;
