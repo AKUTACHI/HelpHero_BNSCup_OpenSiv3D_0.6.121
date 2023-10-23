@@ -14,9 +14,9 @@ void Main()
 	while (System::Update())
 	{
 		goal.draw(ColorF{ 0.9,0.7,0,0.5 });
-
-		player.CheckGround(&foothold);
 		player.Update();
+		player.CheckGround(&foothold);
+		player.CheckGround(&foothold2);
 		robot.Update();
 		victim.Update();
 		foothold.Update();
