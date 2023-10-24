@@ -16,7 +16,7 @@ void Robot::Update()
 		if (KeyD.pressed()) {
 			pos.x += speed * Scene::DeltaTime();
 		}
-		if (KeyEnter.pressed()) {
+		if (KeyEnter.down()) {
 			pos.y += 400;
 		}
 		if (KeyEnter.up()) {

@@ -20,5 +20,12 @@ public:
 		double NextPosL, double NextPosR, double NextPosU, double NextPosD,
 		double partnerPos1, double partnerPos2, double partnerPos3, double partnerPos4, int IsMario);
 private:
+	const Font font{ FontMethod::MSDF, 48, Typeface::Bold };
+
+	Player* player;
+	Robot* robot;
+	Victim* victim;
+	Foothold* foothold;
+	Foothold* foothold2;//足場はあとで動的配列とかにする
 };
 

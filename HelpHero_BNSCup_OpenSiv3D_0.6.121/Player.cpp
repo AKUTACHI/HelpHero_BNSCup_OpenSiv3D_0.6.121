@@ -3,6 +3,8 @@
 Player::Player()
 {
 	beforePos = pos;
+	playerRect.x = pos.x;
+	playerRect.y = pos.y;
 }
 
 void Player::Update()
@@ -10,7 +12,7 @@ void Player::Update()
 	beforePos = pos;
 	if (!KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
 		if (KeyW.down()) {
-			gravity -= 10;
+			gravity -= 10;//ジャンプ
 		}
 		/*if (KeyS.pressed()) {
 			pos.y += speed * Scene::DeltaTime();
@@ -22,10 +24,10 @@ void Player::Update()
 			pos.x += speed * Scene::DeltaTime();
 		}
 	}
-	//pos.y += gravity;
-	playerRect.x = pos.x;//移動反映
+	playerRect.x = pos.x;
 	playerRect.y = pos.y;
-	gravity += speed * Scene::DeltaTime();
+	//pos.y += gravity;//ジャンプと落下の反映　一旦オフにしてる
+	gravity += speed * Scene::DeltaTime();//落下
 }
 
 void Player::Draw()

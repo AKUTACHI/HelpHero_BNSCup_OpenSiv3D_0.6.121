@@ -2,7 +2,12 @@
 #include "Game.h"
 Game::Game(const InitData& init)
 	: IScene{ init } {
-
+	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
+	player = new Player();
+	robot = new Robot(player);
+	victim = new Victim(player, robot);
+	foothold = new Foothold(player, robot, Rect{ 0,500,800,100 });
+	foothold2 = new Foothold(player, robot, Rect{ 400,400,150,100 });//足場はあとで動的配列とかにする
 }
 
 Game::~Game() {
@@ -10,11 +15,26 @@ Game::~Game() {
 }
 
 void Game::update()  {
-
+	const Rect goal{ 0,400,150,200 };//仮ゴール判定
+	player->Update();
+	/*player.CheckGround(&foothold);
+	player.CheckGround(&foothold2);*/
+	robot->Update();
+	victim->Update();
+	foothold->Update();
+	foothold2->Update();
+	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
+		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
+	}
 }
 
 void Game::draw() const  {
-
+	player->Draw();
+	robot->Draw();
+	victim->Draw();
+	foothold->Draw();
+	foothold2->Draw();
+	Rect{ 0,400,150,200 }.draw(ColorF{ 0.9,0.7,0,0.5 });//ゴール
 }
 
 //衝突判定
@@ -79,4 +99,6 @@ void Game::MotionHit(
 		}
 	}
 
+
+	
 }

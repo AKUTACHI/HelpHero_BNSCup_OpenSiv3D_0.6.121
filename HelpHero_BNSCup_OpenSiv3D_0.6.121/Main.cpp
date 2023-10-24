@@ -1,34 +1,23 @@
-﻿#include "common.h"
+﻿#include "Common.h"
+#include"Game.h"
 void Main()
 {
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 	const Font font{ FontMethod::MSDF, 48, Typeface::Bold };
 
-	Player player;
-	Robot robot(&player);
-	Victim victim(&player,&robot);
-	Foothold foothold(&player, &robot, Rect{0,500,800,100});
-	Foothold foothold2(&player, &robot, Rect{ 400,400,150,100 });//足場はあとで動的配列とかにする
+	// シーンマネージャーを作成
+	App manager;
 
-	Rect goal{0,400,150,200};//仮
+	// タイトルシーン（名前は "Title"）を登録
+	manager.add<Game>(State::Game);
+
 	while (System::Update())
 	{
-		goal.draw(ColorF{ 0.9,0.7,0,0.5 });
-		player.Update();
-		/*player.CheckGround(&foothold);
-		player.CheckGround(&foothold2);*/
-		robot.Update();
-		victim.Update();
-		foothold.Update();
-		foothold2.Update();
-
-		player.Draw();
-		robot.Draw();
-		victim.Draw();
-		foothold.Draw();
-		foothold2.Draw();
-		if (victim.getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
-			font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
+		// 現在のシーンを実行
+		// シーンに実装した .update() と .draw() が実行される
+		if (not manager.update())
+		{
+			break;
 		}
 	}
 }

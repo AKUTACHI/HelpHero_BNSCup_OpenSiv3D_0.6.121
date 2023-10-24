@@ -3,8 +3,8 @@
 class Foothold;
 class Player
 {
-	Vec2 pos{0 ,450 };//初期位置　posを更新したらRectに入る
-	Vec2 beforePos;//衝突(仮）あとでテンプレートの方にする
+	Vec2 pos{0 ,450 };//位置 Rectに入る
+	Vec2 beforePos;//更新前の位置
 	float gravity = 5;
 	float speed = 100;
 	Rect playerRect = { 0,0,50,50 };
