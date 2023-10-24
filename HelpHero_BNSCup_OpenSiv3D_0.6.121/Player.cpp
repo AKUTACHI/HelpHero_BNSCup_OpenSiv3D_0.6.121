@@ -8,7 +8,7 @@ Player::Player()
 void Player::Update()
 {
 	beforePos = pos;
-	if (!KeyShift.pressed()) {
+	if (!KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
 		if (KeyW.down()) {
 			gravity -= 10;
 		}
@@ -22,8 +22,8 @@ void Player::Update()
 			pos.x += speed * Scene::DeltaTime();
 		}
 	}
-	pos.y += gravity;
-	playerRect.x = pos.x;
+	//pos.y += gravity;
+	playerRect.x = pos.x;//移動反映
 	playerRect.y = pos.y;
 	gravity += speed * Scene::DeltaTime();
 }

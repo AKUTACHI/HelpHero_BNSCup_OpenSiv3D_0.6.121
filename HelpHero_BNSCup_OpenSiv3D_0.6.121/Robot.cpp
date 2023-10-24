@@ -9,7 +9,7 @@ Robot::Robot(Player* _player)
 
 void Robot::Update()
 {
-	if (KeyShift.pressed()) {
+	if (KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
 		if (KeyA.pressed()) {
 			pos.x -= speed * Scene::DeltaTime();
 		}
@@ -24,7 +24,7 @@ void Robot::Update()
 		}
 
 	}
-	robotRect.x = pos.x;
+	robotRect.x = pos.x;//反映
 	robotRect.y = pos.y;
 	area = robotRect;
 	area.h += 500;
@@ -32,8 +32,8 @@ void Robot::Update()
 
 void Robot::Draw()
 {
-	if (KeyShift.pressed()) {
+	if (KeyShift.pressed()) {//掘削範囲
 		area.draw(ColorF{ 1,0.2,0,0.5 });
 	}
-	robotRect.draw(ColorF{ 1.0,1.0,0 });
+	robotRect.draw(ColorF{ 1.0,1.0,0 });//腕
 }

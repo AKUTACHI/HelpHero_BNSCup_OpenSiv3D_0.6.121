@@ -5,9 +5,9 @@ class Robot;
 class Foothold
 {
 	Vec2 pos = { 0,500 };
-	bool carry = false;
+	bool carry = false;//運ばれてるか
 	Rect footholdRect = {0,500,800,100 };
-	Player* player;
+	Player* player;//位置とる用
 	Robot* robot;
 public:
 	Foothold(Player* _player, Robot* _robot,Rect _rect);

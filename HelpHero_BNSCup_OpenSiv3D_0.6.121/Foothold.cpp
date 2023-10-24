@@ -14,7 +14,7 @@ void Foothold::Update()
 	if (footholdRect.intersects(robot->getRect())) {
 			carry = true;
 	}
-	if (carry) {
+	if (carry) {//ロボットに触れられたらくっついていく
 		pos = robot->getPos();
 		pos.y += robot->getRect().h;
 	}

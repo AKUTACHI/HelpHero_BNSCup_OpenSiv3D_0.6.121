@@ -11,16 +11,16 @@ void Victim::Update()
 {
 	if (victimRect.intersects(player->getRect())) {
 		if (KeyEnter.down() && carry==false) {
-			carry = true;
+			carry = true;//プレイヤーに持ち上げられてる
 		}
 		else if (KeyEnter.down() && carry == true) {
-			carry = false;
+			carry = false;//プレイヤーに降ろされた
 			pos.y += 20;
 		}
 	}
 	if (carry) {
 		pos = player->getPos();
-		pos.y -= 20;
+		pos.y -= 20;//プレイヤーに追従しつつちょっとずらす
 	}
 
 	victimRect.x = pos.x;
