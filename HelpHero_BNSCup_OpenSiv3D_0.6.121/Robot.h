@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include"common.h"
-class Player;
+#include"Player.h"
 class Robot
 {
 	Vec2 pos = { 100,-700 };

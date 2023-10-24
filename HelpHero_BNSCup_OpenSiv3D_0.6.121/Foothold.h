@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "common.h"
-class Player;
-class Robot;
+#include "Player.h"
+#include "Robot.h"
 class Foothold
 {
 	Vec2 pos = { 0,500 };//playerと一緒

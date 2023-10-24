@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "common.h"
-class Foothold;
+#include "Foothold.h"
 class Player
 {
 	Vec2 pos{0 ,450 };//位置 Rectに入る

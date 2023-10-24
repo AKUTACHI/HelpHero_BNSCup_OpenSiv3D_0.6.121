@@ -38,6 +38,14 @@ void Game::draw() const  {
 }
 
 //衝突判定
+// 使い方
+// １：引数を入れる
+// 上から
+// 現在の座標
+// 確認用の座標
+// 衝突する対象の座標
+// ２：Common.hに書いてある//衝突相手//の欄にあるものから適切な物を引数IsMarioに入れる
+// ３：衝突した時に走るif分の中にif (IsMario == ○○)を追加し、使いたい処理を書く
 	//0:左1:右2:上3:下
 void Game::MotionHit(
 	double NowPosL, double NowPosR, double NowPosU, double NowPosD,

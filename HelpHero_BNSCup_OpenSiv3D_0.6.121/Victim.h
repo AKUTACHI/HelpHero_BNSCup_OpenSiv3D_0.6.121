@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include "common.h"
 #include"Foothold.h"
-class Player;
-class Robot;
+#include "Player.h"
+#include "Robot.h"
 class Victim//ちなみにvictimが被災者の英語らしい
 {
 	Vec2 pos = { 700,450 };
