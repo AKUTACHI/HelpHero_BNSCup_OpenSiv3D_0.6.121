@@ -2,11 +2,12 @@
 #include "Player.h"
 Player::Player()
 {
-
+	beforePos = pos;
 }
 
 void Player::Update()
 {
+	beforePos = pos;
 	if (!KeyShift.pressed()) {
 		if (KeyW.down()) {
 			gravity -= 10;
@@ -36,5 +37,6 @@ void Player::CheckGround(Foothold* foothold)
 {
 	if (playerRect.intersects(foothold->getRect())) {
 		gravity = 0;
+		pos = beforePos;
 	}
 }

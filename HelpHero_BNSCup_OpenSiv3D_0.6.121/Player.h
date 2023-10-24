@@ -3,10 +3,11 @@
 class Foothold;
 class Player
 {
-	Vec2 pos = { 0,0 };
+	Vec2 pos{0 ,300 };
+	Vec2 beforePos;
 	float gravity = 5;
 	float speed = 100;
-	Rect playerRect = { 0,480,50,50 };
+	Rect playerRect = { 0,0,50,50 };
 public:
 	Player();
 	void Update();
