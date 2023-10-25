@@ -18,16 +18,23 @@ void Player::Update()
 			pos.y += speed * Scene::DeltaTime();
 		}*/
 		if (KeyA.pressed()) {
-			pos.x -= speed * Scene::DeltaTime();
+			beforePos.x -= speed * Scene::DeltaTime();
 		}
 		if (KeyD.pressed()) {
-			pos.x += speed * Scene::DeltaTime();
+			beforePos.x += speed * Scene::DeltaTime();
 		}
 	}
-	playerRect.x = pos.x;
-	playerRect.y = pos.y;
+	
 	//pos.y += gravity;//ジャンプと落下の反映　一旦オフにしてる
 	gravity += speed * Scene::DeltaTime();//落下
+}
+
+void Player::DecisionMave() {
+
+	pos = beforePos;
+
+	playerRect.x = pos.x;
+	playerRect.y = pos.y;
 }
 
 void Player::Draw()
@@ -35,10 +42,10 @@ void Player::Draw()
 	playerRect.draw();
 }
 
-void Player::CheckGround(Foothold* foothold)
+void Player::CheckGround()
 {
-	if (playerRect.intersects(foothold->getRect())) {
-		gravity = 0;
-		pos = beforePos;
-	}
+
+	gravity = 0;
+	pos = beforePos;
+
 }

@@ -13,9 +13,7 @@ void Foothold::set(Rect _setRect) {
 void Foothold::Update()
 {
 	
-	if (carry) {//ロボットに触れられたらくっついていく
-		
-	}
+	
 	footholdRect.x = pos.x;
 	footholdRect.y = pos.y;
 }

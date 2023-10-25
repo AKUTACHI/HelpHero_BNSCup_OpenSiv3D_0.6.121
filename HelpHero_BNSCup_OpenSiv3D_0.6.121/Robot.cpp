@@ -1,9 +1,8 @@
 ﻿#include "stdafx.h"
 #include "Robot.h"
 
-Robot::Robot(Player* _player)
+Robot::Robot()
 {
-	player = _player;
 	area = robotRect;
 }
 

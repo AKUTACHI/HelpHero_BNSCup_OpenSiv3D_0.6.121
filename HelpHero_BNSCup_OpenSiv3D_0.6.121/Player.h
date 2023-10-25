@@ -10,8 +10,12 @@ class Player
 public:
 	Player();
 	void Update();
+
+	void DecisionMave();//移動確定
 	void Draw();
+
 	void CheckGround();//接触判定　床の回数だけ呼ぶ あとで変える
+
 	Vec2 getNowPos() { return pos; }
 	Vec2 getBeforePos() { return beforePos; }
 	Rect getRect() { return playerRect; }

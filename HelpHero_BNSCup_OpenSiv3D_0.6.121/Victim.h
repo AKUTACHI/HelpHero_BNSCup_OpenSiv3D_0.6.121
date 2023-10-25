@@ -9,6 +9,10 @@ public:
 	Victim();
 	void Update();
 	void Draw();
+
+	void carry_move(Rect _player); //掴まれている時ロボットに追従する
+	void carry_flip() { carry != carry; }//掴まれているかの反転
+
 	Vec2 getPos() { return pos; }
 	Rect getRect() { return victimRect; }
 };
