@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "common.h"
-#include "Foothold.h"
 class Player
 {
 	Vec2 pos{0 ,450 };//位置 Rectに入る
@@ -12,8 +11,9 @@ public:
 	Player();
 	void Update();
 	void Draw();
-	void CheckGround(Foothold* foothold);//接触判定　床の回数だけ呼ぶ あとで変える
-	Vec2 getPos() { return pos; }
+	void CheckGround();//接触判定　床の回数だけ呼ぶ あとで変える
+	Vec2 getNowPos() { return pos; }
+	Vec2 getBeforePos() { return beforePos; }
 	Rect getRect() { return playerRect; }
 };
 

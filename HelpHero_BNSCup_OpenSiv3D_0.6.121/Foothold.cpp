@@ -1,22 +1,20 @@
 ﻿#include "stdafx.h"
 #include "Foothold.h"
 
-Foothold::Foothold(Player* _player, Robot* _robot,Rect _rect)
+Foothold::Foothold()
 {
-	player = _player;
-	robot = _robot;
-	footholdRect = _rect;
 	pos = footholdRect.pos;
+}
+
+void Foothold::set(Rect _setRect) {
+
 }
 
 void Foothold::Update()
 {
-	if (footholdRect.intersects(robot->getRect())) {
-			carry = true;
-	}
+	
 	if (carry) {//ロボットに触れられたらくっついていく
-		pos = robot->getPos();
-		pos.y += robot->getRect().h;
+		
 	}
 	footholdRect.x = pos.x;
 	footholdRect.y = pos.y;
@@ -25,4 +23,11 @@ void Foothold::Update()
 void Foothold::Draw()
 {
 	footholdRect.draw();
+}
+
+void Foothold::carry_move(Rect _robot) {//掴まれている時ロボットに追従する
+	if (carry) {
+		pos = _robot.pos;
+		pos.y += _robot.h;
+	}
 }

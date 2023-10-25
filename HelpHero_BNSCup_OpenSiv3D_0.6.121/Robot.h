@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include"common.h"
-#include"Player.h"
 class Robot
 {
 	Vec2 pos = { 100,-700 };
@@ -8,9 +7,8 @@ class Robot
 	Rect robotRect = { 400,-700,150,800 };
 	Rect area;//掘削範囲表示
 	float speed = 100;
-	Player* player;//まだ使ってない
 public:
-	Robot(Player* _player);
+	Robot();
 	void Update();
 	void Draw();
 	Vec2 getPos() { return pos; }

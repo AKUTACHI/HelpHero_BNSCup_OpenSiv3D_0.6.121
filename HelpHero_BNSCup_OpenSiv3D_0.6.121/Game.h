@@ -1,6 +1,9 @@
 ﻿#pragma once
 # include "Common.h"
-
+#include "Foothold.h"
+#include "Player.h"
+#include "Robot.h"
+#include "Victim.h"
 class Game : public App::Scene
 {
 public:
