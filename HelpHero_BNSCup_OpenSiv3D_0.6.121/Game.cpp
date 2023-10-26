@@ -22,7 +22,7 @@ void Game::update()  {
 	foothold->Update();
 	foothold2->Update();
 
-	victim->carry_move(player->getRect());
+	victim->carry_move(player->getNowPos());
 
 	//プレイヤーの前後左右の現在位置
 	double playerNowPosL = player->getNowPos().x;

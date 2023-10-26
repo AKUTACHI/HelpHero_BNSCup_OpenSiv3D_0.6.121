@@ -13,6 +13,7 @@ void Main()
 
 	while (System::Update())
 	{
+		ClearPrint();
 		// 現在のシーンを実行
 		// シーンに実装した .update() と .draw() が実行される
 		if (not manager.update())
