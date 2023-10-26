@@ -6,12 +6,20 @@ Game::Game(const InitData& init)
 	player = new Player();
 	robot = new Robot();
 	victim = new Victim();
-	foothold = new Foothold();
-	foothold2 = new Foothold();//足場はあとで動的配列とかにする
+	for (int i = 0; i < 10; i++) {
+		foothold[i] = new Foothold();
+	}
+
+	foothold[0]->set({ 0,500,800,100 },false);
+	foothold[1]->set({ 500,400,200,100 }, false);
 }
-
 Game::~Game() {
-
+	delete player;
+	delete robot;
+	delete victim;
+	for (int i = 0; i < 10; i++) {
+		delete foothold[i];
+	}
 }
 
 void Game::update()  {
@@ -19,8 +27,10 @@ void Game::update()  {
 	player->Update();
 	robot->Update();
 	victim->Update();
-	foothold->Update();
-	foothold2->Update();
+
+	for (int i = 0; i < 10; i++) {
+		if (foothold[i]->IsValid())foothold[i]->Update();
+	}
 
 	victim->carry_move(player->getNowPos());
 
@@ -46,16 +56,20 @@ void Game::update()  {
 		playerNextPosL, playerNextPosR, playerNextPosU, playerNextPosD,
 		victimNowPosL, victimNowPosR, victimNowPosU, victimNowPosD, P_V);
 
-	//ブロックの前後左右の位置
-	double footholdPosL = foothold->getPos().x;
-	double footholdPosR = foothold->getPos().x;
-	double footholdPosU = foothold->getPos().y;
-	double footholdPosD = foothold->getPos().y;
+	for (int i = 0; i < 10; i++) {
+		if (foothold[i]->IsValid()) {
+			//ブロックの前後左右の位置
+			double footholdPosL = foothold[i]->getPos().x;
+			double footholdPosR = foothold[i]->getPos().x + foothold[i]->getRect().w;
+			double footholdPosU = foothold[i]->getPos().y;
+			double footholdPosD = foothold[i]->getPos().y + foothold[i]->getRect().h;
 
-	//プレイヤーとブロックの当たり判定
-	MotionHit(playerNowPosL, playerNowPosR, playerNowPosU, playerNowPosD,
-		playerNextPosL, playerNextPosR, playerNextPosU, playerNextPosD,
-		footholdPosL, footholdPosR, footholdPosU, footholdPosD, P_B);
+			//プレイヤーとブロックの当たり判定
+			MotionHit(playerNowPosL, playerNowPosR, playerNowPosU, playerNowPosD,
+				playerNextPosL, playerNextPosR, playerNextPosU, playerNextPosD,
+				footholdPosL, footholdPosR, footholdPosU, footholdPosD, P_B);
+		}
+	}
 
 	player->DecisionMave();
 
@@ -68,8 +82,11 @@ void Game::draw() const  {
 	player->Draw();
 	robot->Draw();
 	victim->Draw();
-	foothold->Draw();
-	foothold2->Draw();
+	for (int i = 0; i < 10; i++) {
+		if (foothold[i]->IsValid()) {
+			foothold[i]->Draw();
+		}
+	}
 	Rect{ 0,400,150,200 }.draw(ColorF{ 0.9,0.7,0,0.5 });//ゴール
 }
 

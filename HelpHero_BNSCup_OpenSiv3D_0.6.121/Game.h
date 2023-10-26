@@ -28,7 +28,6 @@ private:
 	Player* player;
 	Robot* robot;
 	Victim* victim;
-	Foothold* foothold;
-	Foothold* foothold2;//足場はあとで動的配列とかにする
+	Foothold* foothold[10];//とりあえず、10個ブロックを準備する
 };
 

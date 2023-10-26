@@ -6,14 +6,16 @@ Foothold::Foothold()
 	pos = footholdRect.pos;
 }
 
-void Foothold::set(Rect _setRect) {
+void Foothold::set(Rect _setRect, bool _isHold) {//ブロックのセッティング
+	isValid = true;
+	isHold = _isHold;
 
+	pos = _setRect.pos;
+	footholdRect = _setRect;
 }
 
 void Foothold::Update()
 {
-	
-	
 	footholdRect.x = pos.x;
 	footholdRect.y = pos.y;
 }
@@ -24,7 +26,7 @@ void Foothold::Draw()
 }
 
 void Foothold::carry_move(Rect _robot) {//掴まれている時ロボットに追従する
-	if (carry) {
+	if (carry&& isHold) {
 		pos = _robot.pos;
 		pos.y += _robot.h;
 	}
