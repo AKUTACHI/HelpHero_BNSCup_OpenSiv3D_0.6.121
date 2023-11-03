@@ -19,10 +19,8 @@ public:
 	void ArmMove();
 	void Draw();
 
-	void ArmWait() { if (ready) WaitCount = WaitTime; ready = false; }
 
 	Vec2 getNowPos() { return pos; }
-	Vec2 getBeforePos() { return beforePos; }
 	Rect getRect() { return robotRect; }
 };
 
