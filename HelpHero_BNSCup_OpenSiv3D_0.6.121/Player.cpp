@@ -12,7 +12,7 @@ void Player::Update()
 	beforePos = pos;
 	if (!KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
 		if (KeyW.down()) {
-			gravity -= 10;//ジャンプ
+			gravity = -10;//ジャンプ
 		}
 		/*if (KeyS.pressed()) {
 			pos.y += speed * Scene::DeltaTime();
@@ -27,6 +27,7 @@ void Player::Update()
 	
 	//pos.y += gravity;//ジャンプと落下の反映　一旦オフにしてる
 	gravity += speed * Scene::DeltaTime();//落下
+	beforePos.y += gravity;
 }
 
 void Player::DecisionMave() {
@@ -47,6 +48,6 @@ void Player::CheckGround()
 {
 
 	gravity = 0;
-	pos = beforePos;
+	beforePos.y = pos.y;
 
 }

@@ -18,14 +18,8 @@ enum {//衝突相手
 
 enum {//プレイヤー向き
 	Wait,
-	Left,
-	Right,
 	Up,
 	Down,
-	UpLeft = 5,
-	UpRight = 6,
-	DownLeft = 9,
-	DownRight = 10,
 
 };
 

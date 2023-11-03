@@ -9,24 +9,38 @@ Robot::Robot()
 void Robot::Update()
 {
 	if (KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
-		if (KeyA.pressed()) {
-			pos.x -= speed * Scene::DeltaTime();
+		if (KeyA.pressed()&& ready) {
+			beforePos.x -= speed * Scene::DeltaTime();
 		}
-		if (KeyD.pressed()) {
-			pos.x += speed * Scene::DeltaTime();
+		if (KeyD.pressed()&& ready) {
+			beforePos.x += speed * Scene::DeltaTime();
 		}
-		if (KeyEnter.down()) {
-			pos.y += 400;
-		}
-		if (KeyEnter.up()) {
-			pos.y -= 400;
+		if (KeyEnter.down()&& ready) {
+			ready = false;
 		}
 
 	}
+	
+}
+
+void Robot::ArmMove() {
+
+	if (arm_move!=Wait) {
+
+		beforePos.y += 200 * arm_move * Scene::DeltaTime();
+
+	}
+
+}
+
+void Robot::DecisionMave() {//移動確定
+
+	pos = beforePos;
 	robotRect.x = pos.x;//反映
 	robotRect.y = pos.y;
 	area = robotRect;
 	area.h += 500;
+
 }
 
 void Robot::Draw()

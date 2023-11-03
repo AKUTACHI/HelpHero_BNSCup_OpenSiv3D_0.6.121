@@ -14,6 +14,7 @@ public:
 	void DecisionMave();//移動確定
 	void Draw();
 
+	void B_HitX() { beforePos.x = pos.x; }//横の壁に当たった時
 	void CheckGround();//接触判定　床の回数だけ呼ぶ あとで変える
 
 	Vec2 getNowPos() { return pos; }

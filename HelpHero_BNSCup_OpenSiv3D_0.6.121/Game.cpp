@@ -45,6 +45,17 @@ void Game::update()  {
 	double playerNextPosU = player->getBeforePos().y;
 	double playerNextPosD = player->getBeforePos().y + player->getRect().h;
 
+	//プレイヤーの前後左右の現在位置
+	double robotNowPosL = robot->getNowPos().x;
+	double robotNowPosR = robot->getNowPos().x + robot->getRect().w;
+	double robotNowPosU = robot->getNowPos().y;
+	double robotNowPosD = robot->getNowPos().y + robot->getRect().h;
+	//プレイヤーの前後左右の確認位置
+	double robotNextPosL = robot->getBeforePos().x;
+	double robotNextPosR = robot->getBeforePos().x + robot->getRect().w;
+	double robotNextPosU = robot->getBeforePos().y;
+	double robotNextPosD = robot->getBeforePos().y + robot->getRect().h;
+
 	//救助者の前後左右の現在位置
 	double victimNowPosL = victim->getPos().x;
 	double victimNowPosR = victim->getPos().x + victim->getRect().w;
@@ -72,6 +83,7 @@ void Game::update()  {
 	}
 
 	player->DecisionMave();
+	robot->DecisionMave();
 
 	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
 		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
@@ -123,14 +135,14 @@ void Game::MotionHit(
 			if (NowPosL >= partnerPosR &&//現プレイヤー左がブロック右より右な時
 				NowPosR >= partnerPosL) {//現プレイヤー右がブロック左より右な時
 				if (IsMario == P_B) {
-
+					player->B_HitX();
 				}
 			}
 			//プレイヤーから右方向の衝突
 			if (NowPosL <= partnerPosR &&//現プレイヤー左がブロック右より左な時
 					 NowPosR <= partnerPosL) {//現プレイヤー右がブロック左より左な時
 				if (IsMario == P_B) {
-
+					player->B_HitX();
 				}
 			}
 
