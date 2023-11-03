@@ -8,7 +8,7 @@ class Robot
 	Stopwatch timer;
 	Vec2 pos = { 100,-700 };
 	bool ready = true;//入力を受け付ける状態　今は使用してない
-	Rect robotRect = { 100,-700,150,800 };
+	Rect robotRect = { 400,-700,150,800 };
 	Rect area;//掘削範囲表示
 	float speed = 100;
 public:

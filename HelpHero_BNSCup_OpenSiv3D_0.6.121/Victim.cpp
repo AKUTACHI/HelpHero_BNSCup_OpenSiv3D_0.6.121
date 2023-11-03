@@ -1,9 +1,8 @@
 ﻿#include "stdafx.h"
 #include "Victim.h"
 
-Victim::Victim(P2World* _world)
+Victim::Victim()
 {
-	world = _world;
 }
 
 void Victim::Update()
