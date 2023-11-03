@@ -3,15 +3,19 @@
 Game::Game(const InitData& init)
 	: IScene{ init } {
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
-	player = new Player();
-	robot = new Robot();
-	victim = new Victim();
+	player = new Player(&world);
+	robot = new Robot(&world);
+	victim = new Victim(&world);
 	for (int i = 0; i < 10; i++) {
 		foothold[i] = new Foothold();
 	}
 
-	foothold[0]->set({ 0,500,800,100 },false);
-	foothold[1]->set({ 500,400,200,100 }, false);
+	foothold[0]->set({ 0,500,800,100 },false,&world);
+	foothold[1]->set({ 500,400,200,100 }, false,&world);
+	foothold[2]->set({ 500,250,150,100 }, false, &world);
+	foothold[3]->set({ 700,400,200,100 }, false, &world);
+
+	ground = world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 680, 1300, 680 });
 }
 Game::~Game() {
 	delete player;
@@ -23,6 +27,18 @@ Game::~Game() {
 }
 
 void Game::update()  {
+	for (accumulatorSec += Scene::DeltaTime(); stepSec <= accumulatorSec; accumulatorSec -= stepSec)
+	{
+		// 2D 物理演算のワールドを更新
+		world.update(stepSec);
+	}
+
+	if (KeyL.down())//物理のデバッグ用
+	{
+		// クリックした場所に半径 10 cm のボールを作成
+		bodies << world.createCircle(P2Dynamic, Cursor::PosF(), 10);
+	}
+
 	const Rect goal{ 0,400,150,200 };//仮ゴール判定
 	player->Update();
 	robot->Update();
@@ -85,6 +101,7 @@ void Game::update()  {
 	player->DecisionMave();
 	robot->DecisionMave();
 
+
 	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
 		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
 	}
@@ -100,6 +117,12 @@ void Game::draw() const  {
 		}
 	}
 	Rect{ 0,400,150,200 }.draw(ColorF{ 0.9,0.7,0,0.5 });//ゴール
+
+	for (const auto& body : bodies)//P2Bodyの描画
+	{
+		body.draw();
+	}
+	ground.draw();
 }
 
 //衝突判定

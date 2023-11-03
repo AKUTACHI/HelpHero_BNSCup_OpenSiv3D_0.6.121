@@ -2,13 +2,16 @@
 #include "common.h"
 class Player
 {
+	P2World* world;//GameでつくったP2Worldをいれる
+	P2Body body;
 	Vec2 pos{0 ,450 };//位置 Rectに入る
 	Vec2 beforePos;//更新前の位置
 	float gravity = 5;
-	float speed = 100;
-	Rect playerRect = { 0,0,50,50 };
+	float speed = 1000;
+	Rect playerRect = { 0,0,80,80 };
+	bool isJump;
 public:
-	Player();
+	Player(P2World* _world);
 	void Update();
 
 	void DecisionMave();//移動確定

@@ -3,12 +3,14 @@
 void Main()
 {
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
+	Window::Resize(1280,720);
 	const Font font{ FontMethod::MSDF, 48, Typeface::Bold };
 
 	// シーンマネージャーを作成
 	App manager;
 
-	// タイトルシーン（名前は "Title"）を登録
+	// シーンを登録
+	//manager.add<Title>(State::Title);
 	manager.add<Game>(State::Game);
 
 	while (System::Update())

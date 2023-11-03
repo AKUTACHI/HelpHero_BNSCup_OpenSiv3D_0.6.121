@@ -29,5 +29,11 @@ private:
 	Robot* robot;
 	Victim* victim;
 	Foothold* foothold[10];//とりあえず、10個ブロックを準備する
+
+	double accumulatorSec = 0.0;
+	P2World world{ gravity };
+	// 重力加速度 (cm/s^2)
+	Array<P2Body> bodies;
+	P2Body ground;
 };
 
