@@ -6,23 +6,26 @@ Foothold::Foothold()
 	pos = footholdRect.pos;
 }
 
-void Foothold::set(Rect _setRect, bool _isHold) {//ブロックのセッティング
+void Foothold::set(Rect _setRect, bool _isHold,P2World* _world) {//ブロックのセッティング
 	isValid = true;
 	isHold = _isHold;
-
+	world = _world;
 	pos = _setRect.pos;
 	footholdRect = _setRect;
+	body = world->createRect(P2Dynamic, Vec2{pos.x + footholdRect.w / 2,pos.y + footholdRect.h / 2 }, SizeF{ footholdRect.w,footholdRect.h });
 }
 
 void Foothold::Update()
 {
-	footholdRect.x = pos.x;
-	footholdRect.y = pos.y;
+	pos = body.getPos();
+	footholdRect.x = pos.x - footholdRect.w / 2;
+	footholdRect.y = pos.y - footholdRect.h / 2;
 }
 
 void Foothold::Draw()
 {
-	footholdRect.draw();
+	//footholdRect.draw();
+	body.draw();
 }
 
 void Foothold::carry_move(Rect _robot) {//掴まれている時ロボットに追従する

@@ -7,7 +7,9 @@
 // シーンの名前
 enum class State
 {
+	Title,
 	Game,
+	End
 };
 
 enum {//衝突相手
@@ -33,7 +35,12 @@ enum {//プレイヤー向き
 // 共有するデータ
 struct GameData
 {
-
+	int stage=0;
 };
 
 using App = SceneManager<State, GameData>;
+
+const double stepSec = (1.0 / 200.0);
+// 重力加速度 (cm/s^2)
+const double gravity = 980;
+// 2D 物理演算のワールド
