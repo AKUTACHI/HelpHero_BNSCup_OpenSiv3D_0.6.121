@@ -5,7 +5,7 @@ Robot::Robot(P2World* _world)
 {
 	area = robotRect;
 	world = _world;
-	//body = world->createRect(P2Dynamic, Vec2{ pos.x + robotRect.w / 2,pos.y + robotRect.h / 2 }, SizeF{ robotRect.w, robotRect.h }, {}, {});
+	body = world->createRect(P2Dynamic, Vec2{ pos.x + robotRect.w / 2,pos.y + robotRect.h / 2 }, SizeF{ robotRect.w, robotRect.h }, P2Material{ .density = 10, .restitution = 0.0, .friction = 1.0 }).setAwake(false);
 	timer.reset();
 }
 
