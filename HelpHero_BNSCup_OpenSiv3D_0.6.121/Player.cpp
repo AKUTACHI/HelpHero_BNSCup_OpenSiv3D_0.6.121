@@ -14,21 +14,26 @@ void Player::Update()
 {
 	beforePos = pos;
 	if (!KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
-		if (KeyW.down() && abs(body.getVelocity().y)<=0.01) {
+		
+		if (KeyW.down() && abs(body.getVelocity().y)<=0.01) {//取りあえずｙ速度がほぼ0の状態でジャンプ可能に
 			gravity -= 10;//ジャンプ
 			body.applyLinearImpulse(Vec2(0,-200));
 		}
-		/*if (KeyS.pressed()) {
-			pos.y += speed * Scene::DeltaTime();
-		}*/
 		if (KeyA.pressed()) {
 			beforePos.x -= speed * Scene::DeltaTime();
 			body.applyLinearImpulse(Vec2(-speed * Scene::DeltaTime(), 0));
 		}
+		else 
 		if (KeyD.pressed()) {
 			beforePos.x += speed * Scene::DeltaTime();
 			body.applyLinearImpulse(Vec2(speed * Scene::DeltaTime(), 0));
 		}
+		else {
+			body.setVelocity(Vec2(0, body.getVelocity().y));//停止
+		}
+	}
+	else {
+		body.setVelocity(Vec2(0,body.getVelocity().y));
 	}
 
 	if (body.getVelocity().x < -400)body.setVelocity(Vec2(-400, body.getVelocity().y));//速度制限

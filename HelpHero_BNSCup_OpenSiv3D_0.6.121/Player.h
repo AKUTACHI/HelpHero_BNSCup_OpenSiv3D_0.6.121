@@ -2,9 +2,8 @@
 #include "common.h"
 class Player
 {
-	P2World* world;
+	P2World* world;//GameでつくったP2Worldをいれる
 	P2Body body;
-	P2Body beforeBody;
 	Vec2 pos{0 ,450 };//位置 Rectに入る
 	Vec2 beforePos;//更新前の位置
 	float gravity = 5;

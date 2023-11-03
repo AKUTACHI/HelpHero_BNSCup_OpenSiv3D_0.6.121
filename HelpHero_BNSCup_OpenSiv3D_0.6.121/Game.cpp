@@ -5,7 +5,7 @@ Game::Game(const InitData& init)
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 	player = new Player(&world);
 	robot = new Robot(&world);
-	victim = new Victim();
+	victim = new Victim(&world);
 	for (int i = 0; i < 10; i++) {
 		foothold[i] = new Foothold();
 	}
@@ -33,7 +33,7 @@ void Game::update()  {
 		world.update(stepSec);
 	}
 
-	if (KeyL.down())
+	if (KeyL.down())//物理のデバッグ用
 	{
 		// クリックした場所に半径 10 cm のボールを作成
 		bodies << world.createCircle(P2Dynamic, Cursor::PosF(), 10);
@@ -106,7 +106,7 @@ void Game::draw() const  {
 	}
 	Rect{ 0,400,150,200 }.draw(ColorF{ 0.9,0.7,0,0.5 });//ゴール
 
-	for (const auto& body : bodies)
+	for (const auto& body : bodies)//P2Bodyの描画
 	{
 		body.draw();
 	}
