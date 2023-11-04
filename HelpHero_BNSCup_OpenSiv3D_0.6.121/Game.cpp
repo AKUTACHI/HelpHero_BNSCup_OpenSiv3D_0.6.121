@@ -51,7 +51,7 @@ void Game::update()  {
 		bodies << world.createCircle(P2Dynamic, Cursor::PosF(), 10);
 	}
 
-	const Rect goal{ 0,400,150,200 };//仮ゴール判定
+	
 	player->Update();
 	robot->Update();
 	victim->Update();
@@ -70,9 +70,7 @@ void Game::update()  {
 	player->DecisionMave();
 
 
-	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
-		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
-	}
+	
 
 	for (auto& item : effects)
 	{
@@ -119,6 +117,10 @@ void Game::draw() const  {
 	for (const auto& item : effects )
 	{
 		item->Draw();
+	}
+	const Rect goal{ 0,400,150,200 };//仮ゴール判定
+	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
+		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
 	}
 }
 

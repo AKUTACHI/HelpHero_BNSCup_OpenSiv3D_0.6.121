@@ -25,6 +25,7 @@ void Foothold::Update()
 	footholdRect.y = pos.y - footholdRect.h / 2;
 	if (footholdRect.bottomY() < 0) {
 		body.release();
+		isValid = false;
 	}
 }
 
@@ -32,7 +33,8 @@ void Foothold::Draw()
 {
 	//footholdRect.draw();
 	//body.draw();
-	Rect{ (int32)body.getPos().x - footholdRect.w / 2,(int32)body.getPos().y- footholdRect.h ,footholdRect.w,footholdRect.h*2 }(texFoothold).draw();
+	if(isValid)
+		Rect{ (int32)body.getPos().x - footholdRect.w / 2,(int32)body.getPos().y- footholdRect.h ,footholdRect.w,footholdRect.h*2 }(texFoothold).draw();
 }
 
 void Foothold::CheckCarry(Robot* _robot) {//掴まれている時ロボットに追従する
