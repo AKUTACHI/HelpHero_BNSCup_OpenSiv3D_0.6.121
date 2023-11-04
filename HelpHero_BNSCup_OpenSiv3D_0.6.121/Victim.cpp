@@ -22,7 +22,7 @@ void Victim::Update()
 	if (carry) {
 		body.setFixedRotation(true);
 		body.setAwake(false);
-		body.setPos(Vec2(player->getRect().pos.x + 39, player->getRect().pos.y - 20));
+		body.setPos(Vec2(player->getRect().pos.x + 39, player->getRect().pos.y - 24));
 	}
 	else {
 		body.setFixedRotation(false);
