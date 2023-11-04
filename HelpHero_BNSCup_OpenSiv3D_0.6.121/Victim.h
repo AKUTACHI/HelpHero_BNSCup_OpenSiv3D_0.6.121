@@ -18,5 +18,7 @@ public:
 
 	Vec2 getPos() { return pos; }
 	Rect getRect() { return victimRect; }
+
+	Texture texVictim;
 };
 

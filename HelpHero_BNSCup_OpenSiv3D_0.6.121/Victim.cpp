@@ -7,6 +7,8 @@ Victim::Victim(P2World* _world, Player* _player)
 	world = _world;
 	player = _player;
 	body = world->createRect(P2Dynamic, Vec2{ pos.x + victimRect.w / 2,pos.y + victimRect.h / 2 }, SizeF{ 40,40 }, P2Material{ .density = 400 });
+
+	texVictim = Texture{ U"textures/VictimA.png" };
 }
 
 void Victim::Update()
@@ -36,8 +38,9 @@ void Victim::Update()
 
 void Victim::Draw()
 {
-	victimRect.draw(ColorF{ 1.0,0,0 });
-	body.draw();
+	//victimRect(texVictim).draw(ColorF{1.0,0,0});
+	//body.draw();
+	victimRect.movedBy(0,-20)(texVictim).draw();
 }
 
 void Victim::carry_move(Vec2 _player) {//掴まれている時プレイヤーに追従する

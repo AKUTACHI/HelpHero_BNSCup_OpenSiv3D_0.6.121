@@ -5,6 +5,8 @@
 Foothold::Foothold()
 {
 	pos = footholdRect.pos;
+
+	texFoothold = Texture{ U"textures/Foothold.png" };
 }
 
 void Foothold::set(Rect _setRect, bool _isHold,P2World* _world) {//ブロックのセッティング
@@ -29,7 +31,8 @@ void Foothold::Update()
 void Foothold::Draw()
 {
 	//footholdRect.draw();
-	body.draw();
+	//body.draw();
+	Rect{ (int32)body.getPos().x - footholdRect.w / 2,(int32)body.getPos().y- footholdRect.h ,footholdRect.w,footholdRect.h*2 }(texFoothold).draw();
 }
 
 void Foothold::CheckCarry(Robot* _robot) {//掴まれている時ロボットに追従する
