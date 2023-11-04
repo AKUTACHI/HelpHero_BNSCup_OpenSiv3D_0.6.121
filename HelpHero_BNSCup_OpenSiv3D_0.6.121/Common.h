@@ -4,6 +4,7 @@
 #include"Victim.h"
 #include"Foothold.h"
 #include"Robot.h"
+#include"Efficacy.h"
 // シーンの名前
 enum class State
 {
@@ -44,3 +45,14 @@ const double stepSec = (1.0 / 200.0);
 // 重力加速度 (cm/s^2)
 const double gravity = 980;
 // 2D 物理演算のワールド
+
+enum class EffectVariant//エフェクトのバリエーション
+{
+	Impact,
+	Success,
+	Dust,
+	Fire,
+	DustFall,
+};
+
+void GenerateEffect(Vec2 pos, EffectVariant val);

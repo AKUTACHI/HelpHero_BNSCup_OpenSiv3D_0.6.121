@@ -4,6 +4,9 @@ Efficacy::Efficacy() {
 	komaNow = { 0,0 };
 }
 
+Efficacy::Efficacy(Vec2 _pos, Texture _effect, Vec2 _komaSize, Vec2 _koma) {
+	set(_pos,_effect, _komaSize, _koma);
+}
 //座標、画像、コマ数
 void Efficacy::set(Vec2 _pos, Texture _effect, Vec2 _komaSize, Vec2 _koma) {
 	komaMax = _koma;
@@ -11,6 +14,8 @@ void Efficacy::set(Vec2 _pos, Texture _effect, Vec2 _komaSize, Vec2 _koma) {
 	pos = _pos;
 	effect = _effect;
 	isValid = true;
+	timer.set(1s);
+	timer.start();
 }
 void Efficacy::Update() {
 	count += Scene::DeltaTime();
@@ -21,6 +26,10 @@ void Efficacy::Update() {
 			komaNow.y += 1;
 		}
 		count -= 0.1;
+	}
+	if (timer.reachedZero())
+	{
+		isValid = false;
 	}
 }
 

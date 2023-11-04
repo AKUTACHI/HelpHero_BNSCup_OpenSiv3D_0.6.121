@@ -1,6 +1,6 @@
 ﻿#pragma once
 # include "Common.h"
-#include "Effect.h"
+#include "Efficacy.h"
 #include "Foothold.h"
 #include "Player.h"
 #include "Robot.h"
@@ -36,5 +36,7 @@ private:
 	// 重力加速度 (cm/s^2)
 	Array<P2Body> bodies;
 	P2Body ground;
+
+	Array<Efficacy*> effects;
 };
 

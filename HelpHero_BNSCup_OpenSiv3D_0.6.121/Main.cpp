@@ -1,5 +1,9 @@
 ﻿#include "Common.h"
 #include"Game.h"
+
+
+Array<Efficacy*>* ptrEffects;
+
 void Main()
 {
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });

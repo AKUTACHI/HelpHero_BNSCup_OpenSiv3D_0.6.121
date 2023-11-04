@@ -61,6 +61,13 @@ void Game::update()  {
 	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
 		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
 	}
+
+	for (auto& item : effects)
+	{
+		item->Update();
+	}
+
+	effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
 }
 
 void Game::draw() const  {
@@ -79,6 +86,10 @@ void Game::draw() const  {
 		body.draw();
 	}
 	ground.draw();
+	for (const auto& item : effects )
+	{
+		item->Draw();
+	}
 }
 
 //衝突判定
