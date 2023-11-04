@@ -16,7 +16,7 @@ Game::Game(const InitData& init)
 	//foothold[0]->set({ 0,500,800,100 },false,&world);
 
 	texGround = Texture{ U"textures/Concrete.jpg" };
-	ground = world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 680, 1300, 680 });
+	//ground = world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 680, 1300, 680 });
 
 	//背景テクスチャ読み込み
 	texBack00Outlook = Texture{ U"textures/Back00_Outlook.png" };
@@ -80,11 +80,10 @@ void Game::update()  {
 	}
 
 	effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
-}
 
-void Game::draw() const  {
+
 	//背景ロボット位置更新
-	BackRobotPos = Vec2{ robot->getPos().x , 0};
+	BackRobotPos = Vec2{ robot->getPos().x , 0 };
 
 	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
 	BackRobotPos.x -= 1200;
