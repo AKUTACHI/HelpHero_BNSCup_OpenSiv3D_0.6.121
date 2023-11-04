@@ -1,5 +1,6 @@
 ﻿#pragma once
 # include "Common.h"
+#include "Effect.h"
 #include "Foothold.h"
 #include "Player.h"
 #include "Robot.h"
