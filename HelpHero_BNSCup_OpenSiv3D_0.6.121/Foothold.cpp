@@ -13,7 +13,7 @@ void Foothold::set(Rect _setRect, bool _isHold,P2World* _world) {//ブロック�
 	world = _world;
 	pos = _setRect.pos;
 	footholdRect = _setRect;
-	body = world->createRect(P2Dynamic, Vec2{pos.x + footholdRect.w / 2,pos.y + footholdRect.h / 2 }, SizeF{ footholdRect.w,footholdRect.h });
+	body = world->createRect(P2Dynamic, Vec2{ pos.x + footholdRect.w / 2,pos.y + footholdRect.h / 2 }, SizeF{ footholdRect.w,footholdRect.h }, P2Material{ .density = 1000 });
 }
 
 void Foothold::Update()

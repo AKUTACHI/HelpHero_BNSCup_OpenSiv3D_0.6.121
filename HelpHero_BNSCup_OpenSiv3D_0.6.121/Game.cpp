@@ -5,7 +5,7 @@ Game::Game(const InitData& init)
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 	player = new Player(&world);
 	robot = new Robot(&world);
-	victim = new Victim(&world);
+	victim = new Victim(&world,player);
 
 	/*for (int i = 0; i < 10; i++) {
 		foothold[i] = new Foothold();
