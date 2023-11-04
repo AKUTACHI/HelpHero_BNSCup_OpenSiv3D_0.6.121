@@ -14,6 +14,8 @@ Game::Game(const InitData& init)
 	getData().currentStage->SetUpToWorld(world, player, victim, &ground, &foothold);
 
 	//foothold[0]->set({ 0,500,800,100 },false,&world);
+
+	texGround = Texture{ U"textures/Concrete.jpg" };
 }
 Game::~Game() {
 	delete player;
@@ -84,6 +86,12 @@ void Game::draw() const  {
 		body.draw();
 	}
 	ground.draw();
+
+	for (int32 i = 0; i < 12; i++)
+	{
+		Rect{ 125 * i,600,125,125 }(texGround).draw();
+	}
+
 	for (const auto& item : effects )
 	{
 		item->Draw();

@@ -38,5 +38,7 @@ private:
 	P2Body ground;
 
 	Array<Efficacy*> effects;
+
+	Texture texGround;
 };
 
