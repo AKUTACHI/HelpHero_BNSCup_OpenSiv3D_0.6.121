@@ -4,6 +4,7 @@
 
 Array<Efficacy*>* ptrEffects;
 
+#include "Title.h"
 void Main()
 {
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
@@ -15,7 +16,7 @@ void Main()
 
 	manager.get()->currentStage = new Stage1();
 	// シーンを登録
-	//manager.add<Title>(State::Title);
+	manager.add<Title>(State::Title);
 	manager.add<Game>(State::Game);
 
 	while (System::Update())

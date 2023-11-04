@@ -40,5 +40,10 @@ private:
 	Array<Efficacy*> effects;
 
 	Texture texGround;
+	//背景テクスチャ
+	Texture texBack00Outlook;
+	Texture texBack01Robot;
+	Texture texBack02Building;
+	Vec2 BackRobotPos;
 };
 
