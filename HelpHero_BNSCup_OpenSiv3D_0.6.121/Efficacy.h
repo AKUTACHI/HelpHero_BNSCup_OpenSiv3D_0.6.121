@@ -15,7 +15,9 @@ public:
 
 	//座標、画像、コマサイズ、コマ数
 	void set(Vec2 _pos, Texture _effect,Vec2 _komaSize,Vec2 _koma);
-	void set();
+	//バラけるタイプ
+	//中心座標、
+	void set(Vec2 _center);
 
 	void Update();
 
@@ -23,4 +25,3 @@ public:
 
 	bool IsValid() { return isValid; }
 };
-
