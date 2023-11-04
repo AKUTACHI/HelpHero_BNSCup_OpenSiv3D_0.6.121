@@ -35,5 +35,11 @@ private:
 	// 重力加速度 (cm/s^2)
 	Array<P2Body> bodies;
 	P2Body ground;
+
+	//背景テクスチャ
+	Texture texBack00Outlook;
+	Texture texBack01Robot;
+	Texture texBack02Building;
+	Vec2 BackRobotPos;
 };
 
