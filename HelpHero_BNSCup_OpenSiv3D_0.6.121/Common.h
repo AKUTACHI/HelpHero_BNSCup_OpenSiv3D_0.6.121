@@ -32,8 +32,8 @@ enum {//プレイヤー向き
 };
 
 enum {
-
-
+	parapara,
+	barabara,
 
 };
 

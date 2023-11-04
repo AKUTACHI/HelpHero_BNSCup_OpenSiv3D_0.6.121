@@ -32,6 +32,8 @@ void Efficacy::Update() {
 		count += Scene::DeltaTime();
 		if (count >= 0.1) {
 
+			if (komaNow == komaMax)isValid = false;
+
 			if (komaNow.x >= komaMax.x) {
 				komaNow.x = 1;
 				komaNow.y += 1;
@@ -41,6 +43,8 @@ void Efficacy::Update() {
 	}
 
 	if (EfficacyNo == barabara) {
+
+		if (count <= 0)isValid = false;
 
 		pos += angle * Scene::DeltaTime();
 		count -= Scene::DeltaTime();
