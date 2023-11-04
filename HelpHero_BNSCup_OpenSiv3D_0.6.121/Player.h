@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "common.h"
 class Player
 {
 	P2World* world;//GameでつくったP2Worldをいれる

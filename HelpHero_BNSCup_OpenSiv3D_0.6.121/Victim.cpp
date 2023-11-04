@@ -1,4 +1,5 @@
 ﻿#include "stdafx.h"
+#include "Common.h"
 #include "Victim.h"
 
 Victim::Victim(P2World* _world)

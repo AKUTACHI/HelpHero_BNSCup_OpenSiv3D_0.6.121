@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "common.h"
+
 class Victim//ちなみにvictimが被災者の英語らしい
 {
 	P2World* world;

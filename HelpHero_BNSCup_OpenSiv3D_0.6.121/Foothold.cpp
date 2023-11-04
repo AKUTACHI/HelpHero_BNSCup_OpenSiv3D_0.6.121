@@ -1,4 +1,5 @@
 ﻿#include "stdafx.h"
+#include "Common.h"
 #include "Foothold.h"
 
 Foothold::Foothold()

@@ -14,7 +14,6 @@ class Efficacy
 	Timer timer;
 
 	double count=0;
-	double count=0;//カウント
 
 	Vec2 angle;
 

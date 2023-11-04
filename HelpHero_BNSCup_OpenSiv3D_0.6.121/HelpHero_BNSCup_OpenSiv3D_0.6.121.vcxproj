@@ -115,6 +115,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Chhese.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Efficacy.cpp" />
     <ClCompile Include="Foothold.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="StageDifinition.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -322,12 +324,14 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chhese.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Efficacy.h" />
     <ClInclude Include="Foothold.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Robot.h" />
+    <ClInclude Include="StageDifinition.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Victim.h" />
   </ItemGroup>

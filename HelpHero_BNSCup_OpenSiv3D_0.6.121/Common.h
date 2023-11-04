@@ -1,10 +1,26 @@
 ﻿#pragma once
-# include <Siv3D.hpp> // Siv3D v0.6.12
+#include <Siv3D.hpp> // Siv3D v0.6.12
+
+#include"StageDifinition.h"
+
 #include"Player.h"
 #include"Victim.h"
 #include"Foothold.h"
 #include"Robot.h"
 #include"Efficacy.h"
+
+
+// 共有するデータ
+struct HelpHeroGameData
+{
+	int32 stage = 0;
+	StageDifinition* currentStage;
+};
+
+//struct Data
+//{
+//	Chhese* currentStage;
+//};
 // シーンの名前
 enum class State
 {
@@ -38,13 +54,7 @@ enum {
 
 };
 
-// 共有するデータ
-struct GameData
-{
-	int stage=0;
-};
-
-using App = SceneManager<State, GameData>;
+using App = SceneManager<State, HelpHeroGameData>;
 
 const double stepSec = (1.0 / 200.0);
 // 重力加速度 (cm/s^2)

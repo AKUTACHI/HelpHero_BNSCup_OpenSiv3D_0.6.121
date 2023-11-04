@@ -1,4 +1,6 @@
 ﻿#include "stdafx.h"
+
+#include "Common.h"
 #include "Player.h"
 Player::Player(P2World* _world)
 {

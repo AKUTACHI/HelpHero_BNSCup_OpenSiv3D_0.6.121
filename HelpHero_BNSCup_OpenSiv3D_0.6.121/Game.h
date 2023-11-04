@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Robot.h"
 #include "Victim.h"
+
 class Game : public App::Scene
 {
 public:
@@ -29,8 +30,7 @@ private:
 	Player* player;
 	Robot* robot;
 	Victim* victim;
-	Foothold* foothold[10];//とりあえず、10個ブロックを準備する
-
+	Array<Foothold*> foothold;//アレイ化
 	double accumulatorSec = 0.0;
 	P2World world{ gravity };
 	// 重力加速度 (cm/s^2)

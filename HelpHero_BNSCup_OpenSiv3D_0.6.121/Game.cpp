@@ -6,23 +6,20 @@ Game::Game(const InitData& init)
 	player = new Player(&world);
 	robot = new Robot(&world);
 	victim = new Victim(&world);
-	for (int i = 0; i < 10; i++) {
+	/*for (int i = 0; i < 10; i++) {
 		foothold[i] = new Foothold();
-	}
+	}*/
+
+	//getData().currentStage->SetUpToWorld(world, player, victim, &ground, &foothold);
 
 	//foothold[0]->set({ 0,500,800,100 },false,&world);
-	foothold[1]->set({ 500,400,200,100 }, false,&world);
-	foothold[2]->set({ 500,250,150,100 }, false, &world);
-	foothold[3]->set({ 700,400,200,100 }, false, &world);
-
-	ground = world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 600, 1300, 600 });
 }
 Game::~Game() {
 	delete player;
 	delete robot;
 	delete victim;
-	for (int i = 0; i < 10; i++) {
-		delete foothold[i];
+	for (auto& foot : foothold) {
+		delete foot;
 	}
 }
 
@@ -74,9 +71,9 @@ void Game::draw() const  {
 	robot->Draw();
 	victim->Draw();
 	player->Draw();
-	for (int i = 0; i < 10; i++) {
-		if (foothold[i]->IsValid()) {
-			foothold[i]->Draw();
+	for (auto& foot : foothold) {
+		if (foot->IsValid()) {
+			foot->Draw();
 		}
 	}
 	Rect{ 0,400,150,200 }.draw(ColorF{ 0.9,0.7,0,0.5 });//ゴール
