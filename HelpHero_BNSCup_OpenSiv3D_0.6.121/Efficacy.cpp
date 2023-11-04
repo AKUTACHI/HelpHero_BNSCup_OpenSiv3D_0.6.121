@@ -7,6 +7,10 @@ Efficacy::Efficacy() {
 Efficacy::Efficacy(Vec2 _pos, Texture _effect, Vec2 _komaSize, Vec2 _koma) {
 	set(_pos,_effect, _komaSize, _koma);
 }
+
+Efficacy::Efficacy(Vec2 _pos, Texture _effect) {
+	set(_pos, _effect);
+}
 //座標、画像、コマ数
 void Efficacy::set(Vec2 _pos, Texture _effect, Vec2 _komaSize, Vec2 _koma) {
 	EfficacyNo = parapara;
@@ -29,6 +33,9 @@ void Efficacy::set(Vec2 _center, Texture _effect) {
 	count = 1;
 	isValid = true;
 	angle = angle_radius_normalization(Random(359));
+
+	timer.set(1s);
+	timer.start();
 
 }
 

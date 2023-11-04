@@ -9,7 +9,7 @@ void GenerateEffect(Vec2 pos, EffectVariant val)
 	case EffectVariant::Impact:
 		break;
 	default:
-		*ptrEffects << new Efficacy(pos, Texture{ U"textures/effecttest.png" }, Vec2{ 10,10 }, Vec2{ 1,1 });
+		*ptrEffects << new Efficacy(pos, Texture{ U"textures/effecttest.png" });
 		break;
 	}
 }

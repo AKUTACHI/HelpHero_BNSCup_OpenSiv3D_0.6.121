@@ -21,6 +21,7 @@ class Efficacy
 public:
 	Efficacy();
 	Efficacy(Vec2 _pos, Texture _effect, Vec2 _komaSize, Vec2 _koma);
+	Efficacy(Vec2 _pos, Texture _effect);
 
 	//座標、画像、コマサイズ、コマ数
 	void set(Vec2 _pos, Texture _effect,Vec2 _komaSize,Vec2 _koma);
