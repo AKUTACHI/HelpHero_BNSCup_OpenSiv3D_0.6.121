@@ -6,11 +6,12 @@ Game::Game(const InitData& init)
 	player = new Player(&world);
 	robot = new Robot(&world);
 	victim = new Victim(&world);
+
 	/*for (int i = 0; i < 10; i++) {
 		foothold[i] = new Foothold();
 	}*/
 
-	//getData().currentStage->SetUpToWorld(world, player, victim, &ground, &foothold);
+	getData().currentStage->SetUpToWorld(world, player, victim, &ground, &foothold);
 
 	//foothold[0]->set({ 0,500,800,100 },false,&world);
 }

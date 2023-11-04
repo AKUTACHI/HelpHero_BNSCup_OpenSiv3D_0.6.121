@@ -1,6 +1,6 @@
 ﻿#include "Common.h"
 #include"Game.h"
-
+#include "StageDifinition.h"
 
 Array<Efficacy*>* ptrEffects;
 
@@ -13,6 +13,7 @@ void Main()
 	// シーンマネージャーを作成
 	App manager;
 
+	manager.get()->currentStage = new Stage1();
 	// シーンを登録
 	//manager.add<Title>(State::Title);
 	manager.add<Game>(State::Game);

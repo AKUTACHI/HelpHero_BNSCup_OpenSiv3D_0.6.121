@@ -1,5 +1,5 @@
 ﻿#pragma once
-# include "Common.h"
+#include "Common.h"
 #include "Efficacy.h"
 #include "Foothold.h"
 #include "Player.h"
