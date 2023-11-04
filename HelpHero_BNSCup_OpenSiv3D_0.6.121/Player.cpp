@@ -55,7 +55,7 @@ void Player::DecisionMave() {
 void Player::Draw()
 {
 	Print << pos;
-	//playerRect.draw();
+	playerRect.draw();
 	body.draw();
 }
 

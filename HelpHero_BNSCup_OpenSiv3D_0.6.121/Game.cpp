@@ -50,42 +50,7 @@ void Game::update()  {
 
 	victim->carry_move(player->getNowPos());
 
-	//プレイヤーの前後左右の現在位置
-	double playerNowPosL = player->getNowPos().x;
-	double playerNowPosR = player->getNowPos().x + player->getRect().w;
-	double playerNowPosU = player->getNowPos().y;
-	double playerNowPosD = player->getNowPos().y + player->getRect().h;
-	//プレイヤーの前後左右の確認位置
-	double playerNextPosL = player->getBeforePos().x;
-	double playerNextPosR = player->getBeforePos().x + player->getRect().w;
-	double playerNextPosU = player->getBeforePos().y;
-	double playerNextPosD = player->getBeforePos().y + player->getRect().h;
-
-	//救助者の前後左右の現在位置
-	double victimNowPosL = victim->getPos().x;
-	double victimNowPosR = victim->getPos().x + victim->getRect().w;
-	double victimNowPosU = victim->getPos().y;
-	double victimNowPosD = victim->getPos().y + victim->getRect().h;
-
-	//プレイヤーと救助者の当たり判定
-	MotionHit(playerNowPosL, playerNowPosR, playerNowPosU, playerNowPosD,
-		playerNextPosL, playerNextPosR, playerNextPosU, playerNextPosD,
-		victimNowPosL, victimNowPosR, victimNowPosU, victimNowPosD, P_V);
-
-	for (int i = 0; i < 10; i++) {
-		if (foothold[i]->IsValid()) {
-			//ブロックの前後左右の位置
-			double footholdPosL = foothold[i]->getPos().x;
-			double footholdPosR = foothold[i]->getPos().x + foothold[i]->getRect().w;
-			double footholdPosU = foothold[i]->getPos().y;
-			double footholdPosD = foothold[i]->getPos().y + foothold[i]->getRect().h;
-
-			//プレイヤーとブロックの当たり判定
-			MotionHit(playerNowPosL, playerNowPosR, playerNowPosU, playerNowPosD,
-				playerNextPosL, playerNextPosR, playerNextPosU, playerNextPosD,
-				footholdPosL, footholdPosR, footholdPosU, footholdPosD, P_B);
-		}
-	}
+	
 
 	player->DecisionMave();
 

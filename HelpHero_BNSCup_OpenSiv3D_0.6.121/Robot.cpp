@@ -12,22 +12,27 @@ Robot::Robot(P2World* _world)
 void Robot::Update()
 {
 	if (KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
-		if (KeyA.pressed()) {
+		if (KeyA.pressed()&& ready) {
 			pos.x -= speed * Scene::DeltaTime();
 		}
-		if (KeyD.pressed()) {
+		if (KeyD.pressed()&& ready) {
 			pos.x += speed * Scene::DeltaTime();
 		}
 		if (KeyEnter.down()) {
-			pos.y += 400;
-		}
-		if (KeyEnter.up()) {
-			pos.y -= 400;
+			ready = false;
+			arm_move = true;
 		}
 
 	}
+
+	if (!ready) {
+		if (arm_move)arm_contraction += 200 * Scene::DeltaTime();
+		if (!arm_move)arm_contraction -= 200 * Scene::DeltaTime();
+	}
+	if (arm_contraction < 0)arm_contraction = 0;
+
 	robotRect.x = pos.x;//反映
-	robotRect.y = pos.y;
+	robotRect.y = pos.y + arm_contraction;
 	area = robotRect;
 	area.h += 500;
 }
