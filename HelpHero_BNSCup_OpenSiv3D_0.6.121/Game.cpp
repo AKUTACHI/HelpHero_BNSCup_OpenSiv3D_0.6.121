@@ -10,12 +10,12 @@ Game::Game(const InitData& init)
 		foothold[i] = new Foothold();
 	}
 
-	foothold[0]->set({ 0,500,800,100 },false,&world);
+	//foothold[0]->set({ 0,500,800,100 },false,&world);
 	foothold[1]->set({ 500,400,200,100 }, false,&world);
 	foothold[2]->set({ 500,250,150,100 }, false, &world);
 	foothold[3]->set({ 700,400,200,100 }, false, &world);
 
-	ground = world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 680, 1300, 680 });
+	ground = world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 600, 1300, 600 });
 }
 Game::~Game() {
 	delete player;
@@ -43,9 +43,12 @@ void Game::update()  {
 	player->Update();
 	robot->Update();
 	victim->Update();
-
-	for (int i = 0; i < 10; i++) {
-		if (foothold[i]->IsValid())foothold[i]->Update();
+	robot->CheckGround(ground);
+	for (auto foot:foothold) {
+		if (foot->IsValid()) {
+			foot->Update();
+			foot->CheckCarry(robot);
+		}
 	}
 
 	victim->carry_move(player->getNowPos());
@@ -61,9 +64,9 @@ void Game::update()  {
 }
 
 void Game::draw() const  {
-	player->Draw();
 	robot->Draw();
 	victim->Draw();
+	player->Draw();
 	for (int i = 0; i < 10; i++) {
 		if (foothold[i]->IsValid()) {
 			foothold[i]->Draw();

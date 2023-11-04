@@ -3,9 +3,10 @@
 class Victim//ちなみにvictimが被災者の英語らしい
 {
 	P2World* world;
-	Vec2 pos = { 700,450 };
+	P2Body body;
+	Vec2 pos = { 1100,450 };
 	bool carry=false;//運ばれてる
-	Rect victimRect = { 0,0,40,40 };
+	Rect victimRect = { 1100,450,80,80 };
 public:
 	Victim(P2World* world);
 	void Update();

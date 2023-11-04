@@ -20,6 +20,9 @@ void Foothold::Update()
 	pos = body.getPos();
 	footholdRect.x = pos.x - footholdRect.w / 2;
 	footholdRect.y = pos.y - footholdRect.h / 2;
+	if (footholdRect.bottomY() < 0) {
+		body.release();
+	}
 }
 
 void Foothold::Draw()
@@ -28,9 +31,22 @@ void Foothold::Draw()
 	body.draw();
 }
 
-void Foothold::carry_move(Rect _robot) {//掴まれている時ロボットに追従する
-	if (carry&& isHold) {
-		pos = _robot.pos;
-		pos.y += _robot.h;
+void Foothold::CheckCarry(Robot* _robot) {//掴まれている時ロボットに追従する
+	/*Vec2 rPos = _robot->getBody().getPos();
+	Vec2 r
+	if(rPos.x <pos.x && rPos.x+rPos.)*/
+
+	for (auto [pair, collision] : world->getCollisions())
+	{
+		if ((pair.a == body.id() && _robot->getBody().id() == pair.b) || (pair.b == body.id() && pair.a == _robot->getBody().id()))
+		{
+			carry = true;
+			//body.applyLinearImpulse(Vec2{ 0,-1500 * Scene::DeltaTime() });
+		}
+	}
+
+	if (carry) {
+		body.setAwake(false);
+		body.setPos(Vec2(body.getPos().x, body.getPos().y - (_robot->getSpeed() * Scene::DeltaTime())));
 	}
 }
