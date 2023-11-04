@@ -32,6 +32,11 @@ enum {//プレイヤー向き
 
 };
 
+enum {
+	parapara,
+	barabara,
+
+};
 
 // 共有するデータ
 struct GameData

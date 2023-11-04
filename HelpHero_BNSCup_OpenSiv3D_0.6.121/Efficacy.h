@@ -1,6 +1,8 @@
 ﻿#pragma once
+#include "common.h"
 class Efficacy
 {
+	int EfficacyNo;
 
 	Vec2 komaMax;//コマ数
 	Vec2 komaNow;//コマ数
@@ -12,6 +14,10 @@ class Efficacy
 	Timer timer;
 
 	double count=0;
+	double count=0;//カウント
+
+	Vec2 angle;
+
 public:
 	Efficacy();
 	Efficacy(Vec2 _pos, Texture _effect, Vec2 _komaSize, Vec2 _koma);
@@ -19,12 +25,14 @@ public:
 	//座標、画像、コマサイズ、コマ数
 	void set(Vec2 _pos, Texture _effect,Vec2 _komaSize,Vec2 _koma);
 	//バラけるタイプ
-	//中心座標、
-	void set(Vec2 _center);
+	//中心座標、画像
+	void set(Vec2 _center, Texture _effect);
 
 	void Update();
 
 	void Draw();
 
 	bool IsValid() { return isValid; }
+
+	Vec2 angle_radius_normalization(int angle);
 };
