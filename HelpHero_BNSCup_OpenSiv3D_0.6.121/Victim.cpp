@@ -15,7 +15,10 @@ void Victim::Update()
 {
 	if (victimRect.intersects(player->getRect())) {
 		if (KeyEnter.down())
-			if (!carry)carry = true;
+			if (!carry) {
+				Beeps::GetBeep(U"CatchVictim").playOneShot();
+				carry = true;
+			}
 			else {
 				carry = false;
 				body.setPos(Vec2(player->getRect().pos.x - 50, player->getRect().pos.y + 40));

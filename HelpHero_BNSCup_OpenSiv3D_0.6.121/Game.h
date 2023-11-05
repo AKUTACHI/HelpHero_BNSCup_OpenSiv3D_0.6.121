@@ -48,5 +48,6 @@ private:
 	Texture texBack01Robot;
 	Texture texBack02Building;
 	Vec2 BackRobotPos;
+	bool steped = false;
 };
 

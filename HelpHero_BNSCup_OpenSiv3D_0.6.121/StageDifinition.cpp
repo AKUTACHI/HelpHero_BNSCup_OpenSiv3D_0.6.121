@@ -26,14 +26,29 @@ void Stage1::SetUpToWorld(P2World& _world, Player* _player, Victim* _victim, P2B
 {
 	Foothold* instance[10];
 	instance[0] = new Foothold();
-	instance[0]->set({500,400,200,100}, false, &_world);
+	instance[0]->set({450,400,200,100}, false, &_world);
 	instance[1] = new Foothold();
 	instance[1]->set({ 500,250,150,100 }, false, &_world);
 	instance[2] = new Foothold();
 	instance[2]->set({ 700,400,200,100 }, false, &_world);
+	instance[3] = new Foothold();
+	instance[3]->set({ 550,300,100,100 }, false, &_world);
+	instance[4] = new Foothold();
+	instance[4]->set({ 650,300,50,200 }, false, &_world);
+	instance[5] = new Foothold();
+	instance[5]->set({ 430,250,100,100 }, false, &_world);
+	instance[6] = new Foothold();
+	instance[6]->set({ 400,350,150,250 }, false, &_world);
+	instance[7] = new Foothold();
+	instance[7]->set({ 900,350,100,250 }, false, &_world);
 	*_footholds << instance[0];
 	*_footholds << instance[1];
 	*_footholds << instance[2];
+	*_footholds << instance[3];
+	*_footholds << instance[4];
+	*_footholds << instance[5];
+	*_footholds << instance[6];
+	*_footholds << instance[7];
 
 	*_ground = _world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 600, 1300, 600 });
 }
