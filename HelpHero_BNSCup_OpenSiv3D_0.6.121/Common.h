@@ -9,7 +9,7 @@
 #include"Robot.h"
 #include"Efficacy.h"
 #include "SpreadEfficacy.h"
-
+#include "FireEfficacy.h"
 // 共有するデータ
 struct HelpHeroGameData
 {

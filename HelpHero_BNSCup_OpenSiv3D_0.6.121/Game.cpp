@@ -70,12 +70,13 @@ void Game::update()  {
 	player->DecisionMave();
 
 
-	
+	if (KeyI.down())GenerateEffect(Vec2(400, 400), EffectVariant::Impact);
 
-	/*for (auto& item : effects)
+	for (auto& item : effects)
 	{
+		Print << U"a";
 		item->Update();
-	}*/
+	}
 
 	effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
 

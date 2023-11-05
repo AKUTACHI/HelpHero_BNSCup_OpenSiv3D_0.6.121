@@ -7,7 +7,7 @@ public:
 	//座標、テクスチャ、飛び散るエフェクトの数
 	FireEfficacy(Vec2 _center, Texture _effect, int _Number);
 
-	void Update();
+	void Update()override;
 
 	void Draw()const;
 

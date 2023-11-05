@@ -14,6 +14,7 @@ protected:
 public:
 	Efficacy();
 
+	virtual void Update() = 0;
 	virtual void Draw()const = 0;
 
 	bool IsValid() { return isValid; }
