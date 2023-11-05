@@ -136,6 +136,12 @@
     <Filter Include="Resource Files\engine\font\min">
       <UniqueIdentifier>{1b103960-f11a-4515-b4f1-f59333ce00d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\efficacy">
+      <UniqueIdentifier>{3b1bdd6c-4753-43c4-982a-dc42bc66853a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\efficacy">
+      <UniqueIdentifier>{6c340d51-3c52-4f51-ade5-0605473b511b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -159,8 +165,20 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Efficacy.cpp">
+    <ClCompile Include="Common.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StageDifinition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Efficacy.cpp">
+      <Filter>Source Files\efficacy</Filter>
+    </ClCompile>
+    <ClCompile Include="SpreadEfficacy.cpp">
+      <Filter>Source Files\efficacy</Filter>
+    </ClCompile>
+    <ClCompile Include="FireEfficacy.cpp">
+      <Filter>Source Files\efficacy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -812,8 +830,17 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Efficacy.h">
+    <ClInclude Include="StageDifinition.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Efficacy.h">
+      <Filter>Header Files\efficacy</Filter>
+    </ClInclude>
+    <ClInclude Include="SpreadEfficacy.h">
+      <Filter>Header Files\efficacy</Filter>
+    </ClInclude>
+    <ClInclude Include="FireEfficacy.h">
+      <Filter>Header Files\efficacy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

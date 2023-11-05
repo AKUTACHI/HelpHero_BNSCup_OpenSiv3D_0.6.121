@@ -8,7 +8,7 @@
 #include"Foothold.h"
 #include"Robot.h"
 #include"Efficacy.h"
-
+#include "SpreadEfficacy.h"
 
 // 共有するデータ
 struct HelpHeroGameData

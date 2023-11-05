@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Common.h"
 #include "Efficacy.h"
+#include "SpreadEfficacy.h"
 #include "Foothold.h"
 #include "Player.h"
 #include "Robot.h"
@@ -37,6 +38,6 @@ private:
 	Array<P2Body> bodies;
 	P2Body ground;
 
-	Array<Efficacy*> effects;
+	Array<SpreadEfficacy*> effects;
 };
 

@@ -117,11 +117,13 @@
   <ItemGroup>
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Efficacy.cpp" />
+    <ClCompile Include="FireEfficacy.cpp" />
     <ClCompile Include="Foothold.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="SpreadEfficacy.cpp" />
     <ClCompile Include="StageDifinition.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -325,10 +327,12 @@
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="Efficacy.h" />
+    <ClInclude Include="FireEfficacy.h" />
     <ClInclude Include="Foothold.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Robot.h" />
+    <ClInclude Include="SpreadEfficacy.h" />
     <ClInclude Include="StageDifinition.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Victim.h" />
