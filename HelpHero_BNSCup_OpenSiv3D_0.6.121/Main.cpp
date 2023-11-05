@@ -1,5 +1,5 @@
 ﻿#include "Common.h"
-#include"Game.h"
+#include "Game.h"
 #include "StageDifinition.h"
 #include "Beeps.h"
 

@@ -113,7 +113,7 @@ void Game::update() {
 		item->Update();
 	}
 
-	effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
+	//effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
 
 
 	//背景ロボット位置更新

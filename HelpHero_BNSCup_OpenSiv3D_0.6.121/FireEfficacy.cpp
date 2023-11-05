@@ -7,6 +7,7 @@ FireEfficacy::FireEfficacy(Vec2 _center, int _range, Texture _effect, int _densi
 	range = _range;
 	pos = _center;
 	isValid = true;
+	particles.clear();
 }
 
 void FireEfficacy::Update() {
@@ -16,47 +17,39 @@ void FireEfficacy::Update() {
 		count -= Time / density;
 		Number++;
 
-		courseDirectionX << 0;
-		coursePos << Vec2(Random(int(pos.x), int(pos.x) + range), pos.y);
-		speed << Random(10, 50) * 10;
-		clear << 1;
-		angle << 0;
-		Firecount << Time;
-		
+		Particle item;
+		item.courseDirectionX = 0;
+		item.coursePos = Vec2(Random(int(pos.x), int(pos.x) + range), pos.y);
+		item.speed = Random(10, 50) * 10;
+		item.clear = 1;
+		item.angle = 0;
+		item.Firecount = Time;
+		item.lifetime.set(1s);
+		item.lifetime.start();
+		particles << item;
 	}
 
 
 	if (isValid)
-		for (int i = 0; i < Number; i++) {//移動処理
-			if (Firecount[i] < 0) {//要素の削除
-				Firecount.pop_back();
-				clear.pop_back();
-				coursePos.pop_back();
-				speed.pop_back();
-				courseDirectionX.pop_back();
-				angle.pop_back();
+		for (auto& item: particles)
+		{
+			item.Firecount -= Scene::DeltaTime();
+			item.angle += 1;
+			item.courseDirectionX = angle_easing(item.angle);
+			item.clear = item.Firecount / Time;
 
-				Number--;
-			}
-			Firecount[i] -= Scene::DeltaTime();
-
-			angle[i] += 1;
-			courseDirectionX[i] = angle_easing(angle[i]);
-
-			clear[i] = Firecount[i] / Time;
-
-			coursePos[i].x += courseDirectionX[i] * Random(1, 3) * 10 * Scene::DeltaTime();
-			coursePos[i].y -= speed[i] * Scene::DeltaTime();
+			item.coursePos.x += item.courseDirectionX * Random(1, 3) * 10 * Scene::DeltaTime();
+			item.coursePos.y -= item.speed * Scene::DeltaTime();
 		}
+	particles.remove_if([](Particle item) { return item.lifetime.reachedZero(); });
 	Print << Number;
 }
 
 void FireEfficacy::Draw()const {
 
 	if (isValid)
-		for (int i = 0; i < Number; i++) {
-
-			effect.drawAt(coursePos[i], ColorF(1, clear[i]));
-
+		for (auto& item : particles)
+		{
+			effect.drawAt(item.coursePos, ColorF(1, item.clear));
 		}
 }

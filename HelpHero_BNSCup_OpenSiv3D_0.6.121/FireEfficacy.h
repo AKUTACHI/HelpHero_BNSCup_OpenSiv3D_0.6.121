@@ -1,6 +1,17 @@
 ﻿#pragma once
 #include "Efficacy.h"
 
+struct Particle
+{
+	double Firecount;
+	double clear;
+	Vec2 coursePos;
+	double speed;
+	double courseDirectionX;
+	int32 angle;
+	Timer lifetime;
+};
+
 class FireEfficacy :public Efficacy
 {//爆発エフェクトクラスFireEfficacy
 public:
@@ -20,11 +31,12 @@ private:
 	int density;
 	double count;
 	int range;//炎の範囲
+	Array<Particle> particles;
 	const double Time = 1;
-	Array<double>Firecount;
-	Array<double>clear;//透明度
-	Array<Vec2>coursePos;//エフェクトの座標
-	Array<double> speed;//エフェクトの移動スピード
-	Array<double>courseDirectionX;//エフェクトの移動方向
-	Array<int>angle;//炎のイージング
+	//Array<double>Firecount;
+	//Array<double>clear;//透明度
+	//Array<Vec2>coursePos;//エフェクトの座標
+	//Array<double> speed;//エフェクトの移動スピード
+	//Array<double>courseDirectionX;//エフェクトの移動方向
+	//Array<int>angle;//炎のイージング
 };
