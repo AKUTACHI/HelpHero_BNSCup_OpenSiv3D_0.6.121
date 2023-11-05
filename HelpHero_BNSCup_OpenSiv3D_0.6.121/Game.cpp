@@ -41,6 +41,21 @@ Game::Game(const InitData& init)
 	Beeps::GetBeep(U"StageStart").playOneShot();
 	Beeps::GetBeep(U"Flames").setVolume(0.3);
 	Beeps::GetBeep(U"Flames").play();
+
+	GenerateEffect(Vec2(0, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(100, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(200, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(300, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(400, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(500, 720), EffectVariant::Fire);
+
+	GenerateEffect(Vec2(600, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(700, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(800, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(900, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(1000, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(1100, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(1200, 720), EffectVariant::Fire);
 }
 Game::~Game() {
 	delete player;
@@ -106,7 +121,7 @@ void Game::update() {
 		Beeps::GetBeep(U"Flames").stop();
 	}
 
-	if (KeyI.down())GenerateEffect(Vec2(400, 400), EffectVariant::Fire);
+	//if (KeyI.down())GenerateEffect(Vec2(400, 400), EffectVariant::Fire);
 
 	for (auto& item : effects)
 	{
@@ -118,7 +133,18 @@ void Game::update() {
 
 	//背景ロボット位置更新
 	BackRobotPos = Vec2{ robot->getPos().x , 0 };
-	if (Math::Sin(BackRobotPos.x / 50) == 0.99999)Beeps::GetBeep(U"FootStepRobot").playOneShot();
+	if (Math::Sin(BackRobotPos.x / 50) > 0.9)
+	{
+		if (!steped)
+		{
+			Beeps::GetBeep(U"FootStepRobot").playOneShot();
+		}
+		steped = true;
+	}
+	if (Math::Sin(BackRobotPos.x / 50) < 0)
+	{
+		steped = false;
+	}
 	Print << Math::Sin(BackRobotPos.x / 50);
 	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
 	BackRobotPos.x -= 1200;

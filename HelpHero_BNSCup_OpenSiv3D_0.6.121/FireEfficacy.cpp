@@ -42,7 +42,7 @@ void FireEfficacy::Update() {
 			item.coursePos.y -= item.speed * Scene::DeltaTime();
 		}
 	particles.remove_if([](Particle item) { return item.lifetime.reachedZero(); });
-	Print << Number;
+	//Print << Number;
 }
 
 void FireEfficacy::Draw()const {
