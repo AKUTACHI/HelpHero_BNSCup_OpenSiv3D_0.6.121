@@ -15,7 +15,7 @@ Title::~Title()
 
 void Title::update()
 {
-	if (MouseL.down())
+	if (MouseL.down() || KeyEnter.down())
 	{
 		// ストーリーシーンに遷移
 		changeScene(State::Game);

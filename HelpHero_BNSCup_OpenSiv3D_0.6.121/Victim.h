@@ -17,6 +17,7 @@ public:
 	void carry_flip() { carry = !carry; }//掴まれているかの反転
 
 	Vec2 getPos() { return pos; }
+	void setPos(Vec2 p) { body.setPos(p); }
 	Rect getRect() { return victimRect; }
 
 	Texture texVictim;
