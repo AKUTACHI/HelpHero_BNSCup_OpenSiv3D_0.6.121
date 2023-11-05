@@ -22,5 +22,7 @@ public:
 	Rect getRect() { return footholdRect; }
 
 	bool IsValid(){ return isValid; }
+
+	Texture texFoothold;
 };
 

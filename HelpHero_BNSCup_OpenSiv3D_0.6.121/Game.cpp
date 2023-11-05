@@ -14,6 +14,20 @@ Game::Game(const InitData& init)
 	getData().currentStage->SetUpToWorld(world, player, victim, &ground, &foothold);
 
 	//foothold[0]->set({ 0,500,800,100 },false,&world);
+
+	texGround = Texture{ U"textures/Concrete.jpg" };
+	//ground = world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 680, 1300, 680 });
+
+	//背景テクスチャ読み込み
+	texBack00Outlook = Texture{ U"textures/Back00_Outlook.png" };
+	texBack01Robot = Texture{ U"textures/Back01_Robot.png" };
+	texBack02Building = Texture{ U"textures/Back02_Building.png" };
+	//背景ロボ位置初期化
+	BackRobotPos = Vec2{ robot->getPos().x , 0 };
+
+	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
+	BackRobotPos.x -= 1200;
+	BackRobotPos.y -= 200;
 }
 Game::~Game() {
 	delete player;
@@ -37,7 +51,7 @@ void Game::update()  {
 		bodies << world.createCircle(P2Dynamic, Cursor::PosF(), 10);
 	}
 
-	const Rect goal{ 0,400,150,200 };//仮ゴール判定
+	
 	player->Update();
 	robot->Update();
 	victim->Update();
@@ -56,9 +70,7 @@ void Game::update()  {
 	player->DecisionMave();
 
 
-	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
-		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
-	}
+	
 
 	for (auto& item : effects)
 	{
@@ -66,9 +78,21 @@ void Game::update()  {
 	}
 
 	effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
+
+
+	//背景ロボット位置更新
+	BackRobotPos = Vec2{ robot->getPos().x , 0 };
+
+	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
+	BackRobotPos.x -= 1200;
+	BackRobotPos.y -= 200;
 }
 
 void Game::draw() const  {
+	texBack00Outlook.draw();
+	texBack01Robot.draw(BackRobotPos);
+	texBack02Building.draw();
+	player->Draw();
 	robot->Draw();
 	victim->Draw();
 	player->Draw();
@@ -84,10 +108,22 @@ void Game::draw() const  {
 		body.draw();
 	}
 	ground.draw();
+
+	for (int32 i = 0; i < 12; i++)
+	{
+		Rect{ 125 * i,600,125,125 }(texGround).draw();
+	}
+
 	for (const auto& item : effects )
 	{
 		item->Draw();
 	}
+	const Rect goal{ 0,400,150,200 };//仮ゴール判定
+	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
+		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
+	}
+
+	font(U"[A],[D]:移動  [Shift][A],[Shift][D]:ロボット操作　[Enter]:持ち上げ　[Shift][Enter]:ロボット持ち上げ").drawBaseAt(20, Scene::Rect().bottomCenter() + Vec2{0,-20});
 }
 
 //衝突判定

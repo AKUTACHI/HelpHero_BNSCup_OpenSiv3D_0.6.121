@@ -8,6 +8,9 @@ Robot::Robot(P2World* _world)
 	/*body = world->createRect(P2Dynamic, Vec2{pos.x + robotRect.w / 2,pos.y + robotRect.h / 2}, SizeF{robotRect.w, robotRect.h},
 		P2Material{ .density = 1000, .restitution = 0.0, .friction = 1.0 }, P2Filter{ .categoryBits = 0 }).setAwake(false);*/
 	timer.reset();
+
+	texHandClose = Texture{ U"textures/HandClose.png" };
+	texHandOpen = Texture{ U"textures/HandOpen.png" };
 }
 
 void Robot::Update()
@@ -52,8 +55,16 @@ void Robot::Draw()
 	if (KeyShift.pressed() && ready) {//掘削範囲
 		area.draw(ColorF{ 1,0.2,0,0.5 });
 	}
-	robotRect.draw(ColorF{ 1.0,1.0,0 });//腕
+	robotRect.draw(ColorF{ 0.3,0.3,0.3 });//腕
 	body.draw();
+	if (up)
+	{
+		texHandClose.draw(Arg::center( body.getPos()));
+	}
+	else
+	{
+		texHandOpen.draw(Arg::center(area.center()));
+	}
 }
 
 bool Robot::CheckGround(const P2Body ground)

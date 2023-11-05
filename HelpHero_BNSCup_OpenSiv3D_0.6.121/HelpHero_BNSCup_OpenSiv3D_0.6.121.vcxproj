@@ -129,6 +129,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Title.cpp" />
     <ClCompile Include="Victim.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -335,6 +336,7 @@
     <ClInclude Include="SpreadEfficacy.h" />
     <ClInclude Include="StageDifinition.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="Victim.h" />
   </ItemGroup>
   <ItemGroup>

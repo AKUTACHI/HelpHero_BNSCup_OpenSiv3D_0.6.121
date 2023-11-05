@@ -15,7 +15,7 @@ class Robot
 	double wait_count = 0;
 
 	bool ready = true;//入力を受け付ける状態
-	Rect robotRect = { 100,-830,250,800 };
+	Rect robotRect = { 100,-830,150,800 };
 	Rect bodyRect;
 	Rect area;//掘削範囲表示
 	float speed = 130;
@@ -29,5 +29,8 @@ public:
 	Rect getRect() { return robotRect; }
 	P2Body getBody() { return body; }
 	Rect getBodyRect() { return bodyRect; }
+
+	Texture texHandOpen;
+	Texture texHandClose;
 };
 

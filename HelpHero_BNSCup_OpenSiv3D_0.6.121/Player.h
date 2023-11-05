@@ -7,8 +7,12 @@ class Player
 	Vec2 beforePos;//更新前の位置
 	float gravity = 5;
 	float speed = 1000;
-	Rect playerRect = { 0,0,80,80 };
+	Rect playerRect = { 0,0,100,100 };
 	bool isJump;
+
+	int32 dir;
+	int32 lastDir = 1;
+
 public:
 	Player(P2World* _world);
 	void Update();
@@ -21,5 +25,7 @@ public:
 	Vec2 getNowPos() { return pos; }
 	Vec2 getBeforePos() { return beforePos; }
 	Rect getRect() { return playerRect; }
+
+	HashTable<int32, Texture> texPlayer;
 };
 

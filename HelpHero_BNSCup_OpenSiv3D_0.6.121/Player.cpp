@@ -10,10 +10,15 @@ Player::Player(P2World* _world)
 	world = _world;
 	body = world->createRect(P2Dynamic, Vec2{ pos.x + playerRect.w / 2,pos.y + playerRect.h / 2 }, SizeF{ playerRect.w, playerRect.h });//RectとP2Bodyの位置を合わせてる、後で変えるかも
 	body.setFixedRotation(false);
+	texPlayer.emplace(0, Texture{ U"textures/Hero0.png" });
+	texPlayer.emplace(1, Texture{ U"textures/Hero1.png" });
+	texPlayer.emplace(2, Texture{ U"textures/Hero2.png" });
+	texPlayer.emplace(3, Texture{ U"textures/Hero3.png" });
 }
 
 void Player::Update()
 {
+	dir = 0;
 	beforePos = pos;
 	if (!KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
 		
@@ -24,11 +29,13 @@ void Player::Update()
 		if (KeyA.pressed()) {
 			beforePos.x -= speed * Scene::DeltaTime();
 			body.applyLinearImpulse(Vec2(-speed * Scene::DeltaTime(), 0));
+			dir = -1;
 		}
 		else 
 		if (KeyD.pressed()) {
 			beforePos.x += speed * Scene::DeltaTime();
 			body.applyLinearImpulse(Vec2(speed * Scene::DeltaTime(), 0));
+			dir = 1;
 		}
 		else {
 			body.setVelocity(Vec2(0, body.getVelocity().y));//停止
@@ -43,6 +50,11 @@ void Player::Update()
 
 	//pos.y += gravity;//ジャンプと落下の反映　一旦オフにしてる
 	gravity += speed * Scene::DeltaTime();//落下
+
+	if (dir != 0)
+	{
+		lastDir = dir;
+	}
 }
 
 void Player::DecisionMave() {
@@ -56,9 +68,19 @@ void Player::DecisionMave() {
 
 void Player::Draw()
 {
-	Print << pos;
-	playerRect.draw();
-	body.draw();
+	//Print << pos;
+	//playerRect.draw();
+	//body.draw();
+	if (body.getVelocity().length() < 0.2)
+	{
+		playerRect(texPlayer[0].mirrored(lastDir < 0)).draw();
+	}
+	else
+	{
+		int32 frame = Periodic::Sawtooth0_1(1s) * 4;
+		playerRect(texPlayer[frame].mirrored(lastDir < 0)).draw();
+	}
+
 }
 
 void Player::CheckGround()
