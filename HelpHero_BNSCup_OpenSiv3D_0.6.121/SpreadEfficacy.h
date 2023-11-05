@@ -1,6 +1,4 @@
 ﻿#pragma once
-#ifndef _SpreadEfficacy_H_
-#define _SpreadEfficacy_H_
 #include "Efficacy.h"
 
 class SpreadEfficacy :public Efficacy
@@ -21,4 +19,3 @@ private:
 	Array<Vec2>courseAngle;//エフェクトの移動角度
 };
 
-#endif

@@ -72,10 +72,10 @@ void Game::update()  {
 
 	
 
-	for (auto& item : effects)
+	/*for (auto& item : effects)
 	{
 		item->Update();
-	}
+	}*/
 
 	effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
 

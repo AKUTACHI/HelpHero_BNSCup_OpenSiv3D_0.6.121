@@ -1,7 +1,4 @@
 ﻿#pragma once
-#ifndef _Efficacy_H_
-#define _Efficacy_H_
-#include "common.h"
 class Efficacy
 {//efficacy
 protected:
@@ -23,4 +20,3 @@ public:
 
 	Vec2 angle_radius_normalization(int angle);
 };
-#endif

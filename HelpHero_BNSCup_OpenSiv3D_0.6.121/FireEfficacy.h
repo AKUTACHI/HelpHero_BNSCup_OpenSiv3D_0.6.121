@@ -1,7 +1,6 @@
 ﻿#pragma once
-#ifndef _FireEfficacy_H_
-#define _FireEfficacy_H_
 #include "Efficacy.h"
+
 class FireEfficacy :public Efficacy
 {//爆発エフェクトクラスFireEfficacy
 public:
@@ -21,5 +20,3 @@ private:
 	Array<Vec2>coursePos;//エフェクトの座標
 	Array<Vec2>courseAngle;//エフェクトの移動角度
 };
-
-#endif
