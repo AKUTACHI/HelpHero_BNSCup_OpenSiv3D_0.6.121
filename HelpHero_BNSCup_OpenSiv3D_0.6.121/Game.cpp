@@ -74,6 +74,18 @@ void Game::update()  {
 
 	player->DecisionMave();
 
+	if (victim->getRect().intersects(goalRect)) {//ゴールに被災者を持ってきたらクリア
+		goal = true;
+		if (getData().stage == 0)
+			getData().currentStage = new Stage2();
+		if (getData().stage == 1)
+			getData().currentStage = new Stage2();
+	}
+	if (goal && KeyEnter.down()) {
+		getData().stage++;
+		changeScene(State::Game);
+	}
+	if (KeyR.down())changeScene(State::Game, 0.3s);
 
 	if (KeyI.down())GenerateEffect(Vec2(400, 400), EffectVariant::Impact);
 
@@ -123,12 +135,12 @@ void Game::draw() const  {
 	{
 		item->Draw();
 	}
-	const Rect goal{ 0,400,150,200 };//仮ゴール判定
-	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
+	if (goal) {//ゴールに被災者を持ってきたらクリア
 		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
+		font(U"Enter to Next Stage").draw(64, Vec2{ 500, 200 }, ColorF{ 0.8, 1, 0.8 });
 	}
 
-	font(U"[A],[D]:移動  [Shift][A],[Shift][D]:ロボット操作　[Enter]:持ち上げ　[Shift][Enter]:ロボット持ち上げ").drawBaseAt(20, Scene::Rect().bottomCenter() + Vec2{0,-20});
+	font(U"[A],[D]:移動  [Shift][A],[Shift][D]:ロボット操作　[Enter]:持ち上げ　[Shift][Enter]:ロボット持ち上げ [R]:リスタート").drawBaseAt(20, Scene::Rect().bottomCenter() + Vec2{ 0,-20 }, ColorF{ 1.0,0.2,0 });
 }
 
 //衝突判定

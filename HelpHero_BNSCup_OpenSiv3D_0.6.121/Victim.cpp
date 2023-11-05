@@ -40,11 +40,12 @@ void Victim::Draw()
 {
 	//victimRect(texVictim).draw(ColorF{1.0,0,0});
 	//body.draw();
+	Circle(body.getPos(),60).draw(ColorF{ 1.0,0,0,0.4 });
 	victimRect.movedBy(0,-20)(texVictim).draw();
 }
 
 void Victim::carry_move(Vec2 _player) {//掴まれている時プレイヤーに追従する
-	if (carry) {
+	/*if (carry) {
 		pos.x = _player.x + 10;
-	}
+	}*/
 }

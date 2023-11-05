@@ -24,3 +24,19 @@ public:
 	void SetUpToWorld(P2World& _world, Player* _player, Victim* _victim, P2Body* _ground, Array<Foothold*>* _footholds) override;
 	int32 GetStageNum() override;
 };
+
+class Stage2 : public StageDifinition
+{
+public:
+	Stage2();
+	void SetUpToWorld(P2World& _world, Player* _player, Victim* _victim, P2Body* _ground, Array<Foothold*>* _footholds) override;
+	int32 GetStageNum() override;
+};
+
+class Stage3 : public StageDifinition
+{
+public:
+	Stage3();
+	void SetUpToWorld(P2World& _world, Player* _player, Victim* _victim, P2Body* _ground, Array<Foothold*>* _footholds) override;
+	int32 GetStageNum() override;
+};

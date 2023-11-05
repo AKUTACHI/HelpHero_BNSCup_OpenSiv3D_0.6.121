@@ -40,6 +40,8 @@ private:
 
 	Array<Efficacy*> effects;
 
+	bool goal=false;
+	Rect goalRect{ 0,400,150,200 };
 	Texture texGround;
 	//背景テクスチャ
 	Texture texBack00Outlook;
