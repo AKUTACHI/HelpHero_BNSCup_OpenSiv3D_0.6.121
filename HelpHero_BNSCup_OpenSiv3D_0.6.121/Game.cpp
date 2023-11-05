@@ -1,5 +1,8 @@
 ﻿#include "stdafx.h"
 #include "Game.h"
+
+extern Array<Efficacy*>* ptrEffects;
+
 Game::Game(const InitData& init)
 	: IScene{ init } {
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
@@ -28,6 +31,8 @@ Game::Game(const InitData& init)
 	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
 	BackRobotPos.x -= 1200;
 	BackRobotPos.y -= 200;
+
+	ptrEffects = &effects;
 }
 Game::~Game() {
 	delete player;
