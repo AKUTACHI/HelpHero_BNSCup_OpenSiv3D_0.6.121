@@ -122,6 +122,8 @@ void Game::draw() const  {
 	if (victim->getRect().intersects(goal)) {//ゴールに被災者を持ってきたらクリア
 		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
 	}
+
+	font(U"[A],[D]:移動  [Shift][A],[Shift][D]:ロボット操作　[Enter]:持ち上げ　[Shift][Enter]:ロボット持ち上げ").drawBaseAt(20, Scene::Rect().bottomCenter() + Vec2{0,-20});
 }
 
 //衝突判定
