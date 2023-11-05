@@ -28,16 +28,7 @@ void FireEfficacy::Update() {
 
 	if (isValid)
 		for (int i = 0; i < Number; i++) {//移動処理
-			if (Firecount[i] < 0) {//要素の削除
-				Firecount.pop_back();
-				clear.pop_back();
-				coursePos.pop_back();
-				speed.pop_back();
-				courseDirectionX.pop_back();
-				angle.pop_back();
-
-				Number--;
-			}
+			
 			Firecount[i] -= Scene::DeltaTime();
 
 			angle[i] += 1;
@@ -47,8 +38,19 @@ void FireEfficacy::Update() {
 
 			coursePos[i].x += courseDirectionX[i] * Random(1, 3) * 10 * Scene::DeltaTime();
 			coursePos[i].y -= speed[i] * Scene::DeltaTime();
+			if (Firecount[i] < 0) {//要素の削除
+
+				Firecount.pop_back();
+				clear.pop_back();
+				coursePos.pop_back();
+				speed.pop_back();
+				courseDirectionX.pop_back();
+				angle.pop_back();
+
+				Number--;
+			}
 		}
-	Print << Number;
+	Print << Firecount;
 }
 
 void FireEfficacy::Draw()const {

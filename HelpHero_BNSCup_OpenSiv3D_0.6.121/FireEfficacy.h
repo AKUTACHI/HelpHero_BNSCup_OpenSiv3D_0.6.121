@@ -20,7 +20,7 @@ private:
 	int density;
 	double count;
 	int range;//炎の範囲
-	const double Time = 1;
+	const double Time = 3;
 	Array<double>Firecount;
 	Array<double>clear;//透明度
 	Array<Vec2>coursePos;//エフェクトの座標
