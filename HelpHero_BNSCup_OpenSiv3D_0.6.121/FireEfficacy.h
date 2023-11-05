@@ -4,8 +4,8 @@
 class FireEfficacy :public Efficacy
 {//爆発エフェクトクラスFireEfficacy
 public:
-	//座標、テクスチャ、飛び散るエフェクトの数
-	FireEfficacy(Vec2 _center, Texture _effect, int _Number);
+	//座標、炎範囲、テクスチャ、炎の密度
+	FireEfficacy(Vec2 _center, int _range, Texture _effect, int _density);
 
 	void Update()override;
 
@@ -13,10 +13,18 @@ public:
 
 	void CenterUpdate(Vec2 _center) { pos = _center; }//エフェクト位置更新
 
+	void Digestion() { isValid = false; }//消化
 private:
 
 	int Number = 0;
+	int density;
+	double count;
+	int range;//炎の範囲
+	const double Time = 1;
+	Array<double>Firecount;
 	Array<double>clear;//透明度
 	Array<Vec2>coursePos;//エフェクトの座標
-	Array<Vec2>courseAngle;//エフェクトの移動角度
+	Array<double> speed;//エフェクトの移動スピード
+	Array<double>courseDirectionX;//エフェクトの移動方向
+	Array<int>angle;//炎のイージング
 };

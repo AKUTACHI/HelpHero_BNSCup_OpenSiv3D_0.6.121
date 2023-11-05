@@ -20,4 +20,5 @@ public:
 	bool IsValid() { return isValid; }
 
 	Vec2 angle_radius_normalization(int angle);
+	double angle_easing(int angle);
 };

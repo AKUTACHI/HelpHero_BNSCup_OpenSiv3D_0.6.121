@@ -75,7 +75,7 @@ void Game::update()  {
 	player->DecisionMave();
 
 
-	if (KeyI.down())GenerateEffect(Vec2(400, 400), EffectVariant::Impact);
+	if (KeyI.down())GenerateEffect(Vec2(400, 400), EffectVariant::Fire);
 
 	for (auto& item : effects)
 	{
