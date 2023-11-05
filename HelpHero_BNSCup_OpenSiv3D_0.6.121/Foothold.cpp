@@ -46,7 +46,11 @@ void Foothold::CheckCarry(Robot* _robot) {//掴まれている時ロボットに
 	{
 		if ((pair.a == body.id() && _robot->getBody().id() == pair.b) || (pair.b == body.id() && pair.a == _robot->getBody().id()))
 		{
-			carry = true;
+			if (!carry) {
+				Beeps::GetBeep(U"Rock").play();
+				carry = true;
+			}
+			
 			//body.applyLinearImpulse(Vec2{ 0,-1500 * Scene::DeltaTime() });
 		}
 	}

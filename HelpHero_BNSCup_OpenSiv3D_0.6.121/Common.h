@@ -7,6 +7,7 @@
 #include"Victim.h"
 #include"Foothold.h"
 #include"Robot.h"
+#include"Beeps.h"
 #include"Efficacy.h"
 #include "SpreadEfficacy.h"
 #include "FireEfficacy.h"

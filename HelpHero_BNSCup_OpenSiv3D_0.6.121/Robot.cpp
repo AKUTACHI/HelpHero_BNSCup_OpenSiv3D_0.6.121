@@ -26,6 +26,7 @@ void Robot::Update()
 		}
 		if (KeyEnter.down()) {
 			ready = false;
+			Beeps::GetBeep(U"ArmDown").playOneShot();
 			timer.restart();
 		}
 	}
@@ -74,6 +75,8 @@ bool Robot::CheckGround(const P2Body ground)
 		if (ground.getPos().y - 140<robotRect.y && up==false)
 		{
 			up = true;
+			Beeps::GetBeep(U"ArmCatch").playOneShot();
+			Beeps::GetBeep(U"ArmUp").playOneShot();
 			body = world->createRect(P2Dynamic, Vec2{ robotRect.x + robotRect.w / 2,robotRect.y + robotRect.h }, SizeF{ robotRect.w, 90 });
 			body.setFixedRotation(true);
 			return true;

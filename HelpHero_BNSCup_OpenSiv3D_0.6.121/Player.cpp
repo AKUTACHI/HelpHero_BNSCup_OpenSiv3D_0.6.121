@@ -30,26 +30,27 @@ void Player::Update()
 			beforePos.x -= speed * Scene::DeltaTime();
 			body.applyLinearImpulse(Vec2(-speed * Scene::DeltaTime(), 0));
 			dir = -1;
+			Beeps::GetBeep(U"FootStepHero").play();
 		}
 		else 
 		if (KeyD.pressed()) {
 			beforePos.x += speed * Scene::DeltaTime();
 			body.applyLinearImpulse(Vec2(speed * Scene::DeltaTime(), 0));
 			dir = 1;
+			Beeps::GetBeep(U"FootStepHero").play();
 		}
 		else {
 			body.setVelocity(Vec2(0, body.getVelocity().y));//停止
+			Beeps::GetBeep(U"FootStepHero").stop();
 		}
 	}
 	else {
 		body.setVelocity(Vec2(0,body.getVelocity().y));
+		Beeps::GetBeep(U"FootStepHero").stop();
 	}
 
 	if (body.getVelocity().x < -400)body.setVelocity(Vec2(-400, body.getVelocity().y));//速度制限
 	if (body.getVelocity().x > 400)body.setVelocity(Vec2(400, body.getVelocity().y));
-
-	//pos.y += gravity;//ジャンプと落下の反映　一旦オフにしてる
-	gravity += speed * Scene::DeltaTime();//落下
 
 	if (dir != 0)
 	{
