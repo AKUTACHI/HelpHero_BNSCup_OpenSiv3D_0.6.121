@@ -74,7 +74,6 @@ void Game::update()  {
 
 	for (auto& item : effects)
 	{
-		Print << U"a";
 		item->Update();
 	}
 
