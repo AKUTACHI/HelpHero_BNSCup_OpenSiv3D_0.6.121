@@ -1,6 +1,7 @@
 ﻿#include "Common.h"
 #include"Game.h"
 #include "StageDifinition.h"
+#include "Beeps.h"
 
 Array<Efficacy*>* ptrEffects;
 
@@ -10,6 +11,9 @@ void Main()
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 	Window::Resize(1280,720);
 	const Font font{ FontMethod::MSDF, 48, Typeface::Bold };
+
+	Beeps::AddBeep(U"Title", Audio{ Audio::Stream,U"audios/Title.mp3", Loop::Yes });
+	Beeps::AddBeep(U"TitleEnter", Audio{ U"audios/Enter.mp3" });
 
 	// シーンマネージャーを作成
 	App manager;
