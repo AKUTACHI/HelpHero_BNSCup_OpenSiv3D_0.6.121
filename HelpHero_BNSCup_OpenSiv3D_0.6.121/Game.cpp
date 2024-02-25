@@ -42,7 +42,7 @@ Game::Game(const InitData& init)
 	Beeps::GetBeep(U"Flames").setVolume(0.3);
 	Beeps::GetBeep(U"Flames").play();
 
-	GenerateEffect(Vec2(0, 720), EffectVariant::Fire);
+	/*GenerateEffect(Vec2(0, 720), EffectVariant::Fire);
 	GenerateEffect(Vec2(100, 720), EffectVariant::Fire);
 	GenerateEffect(Vec2(200, 720), EffectVariant::Fire);
 	GenerateEffect(Vec2(300, 720), EffectVariant::Fire);
@@ -55,7 +55,7 @@ Game::Game(const InitData& init)
 	GenerateEffect(Vec2(900, 720), EffectVariant::Fire);
 	GenerateEffect(Vec2(1000, 720), EffectVariant::Fire);
 	GenerateEffect(Vec2(1100, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(1200, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(1200, 720), EffectVariant::Fire);*/
 }
 Game::~Game() {
 	delete player;
@@ -145,7 +145,7 @@ void Game::update() {
 	{
 		steped = false;
 	}
-	Print << Math::Sin(BackRobotPos.x / 50);
+	//Print << Math::Sin(BackRobotPos.x / 50);
 	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
 	BackRobotPos.x -= 1200;
 	BackRobotPos.y -= 200;
@@ -153,8 +153,8 @@ void Game::update() {
 
 void Game::draw() const {
 	texBack00Outlook.draw();
-	texBack01Robot.draw(BackRobotPos);
-	texBack02Building.draw();
+	texBack01Robot.draw(BackRobotPos, ColorF{ 1.0,1.0,1.0,0.85 });
+	texBack02Building.draw(ColorF{1.0,1.0,1.0,0.7});
 	player->Draw();
 	robot->Draw();
 	victim->Draw();
@@ -185,7 +185,8 @@ void Game::draw() const {
 		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
 		font(U"Enter to Next Stage").draw(64, Vec2{ 500, 200 }, ColorF{ 0.8, 1, 0.8 });
 	}
-
+	String stageStr = ToString(getData().stage + 1);
+	font(U"Stage" + stageStr).draw(50, 30,30, ColorF{ 1.0,1.0,1 });
 	font(U"[A],[D]:移動  [Shift][A],[Shift][D]:ロボット操作　[Enter]:持ち上げ　[Shift][Enter]:ロボット持ち上げ [R]:リスタート").drawBaseAt(20, Scene::Rect().bottomCenter() + Vec2{ 0,-20 }, ColorF{ 1.0,0.2,0 });
 }
 

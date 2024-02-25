@@ -27,6 +27,7 @@ enum class State
 {
 	Title,
 	Game,
+	StageManager,
 	End
 };
 

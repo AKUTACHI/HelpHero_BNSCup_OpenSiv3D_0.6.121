@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "StageDifinition.h"
 #include "Beeps.h"
+#include"StageManager.h"
 
 Array<Efficacy*>* ptrEffects;
 
@@ -33,7 +34,7 @@ void Main()
 	// シーンを登録
 	manager.add<Title>(State::Title);
 	manager.add<Game>(State::Game);
-
+	manager.add<StageManager>(State::StageManager);
 	while (System::Update())
 	{
 		ClearPrint();

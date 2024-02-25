@@ -126,6 +126,7 @@
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="SpreadEfficacy.cpp" />
     <ClCompile Include="StageDifinition.cpp" />
+    <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -337,6 +338,7 @@
     <ClInclude Include="Robot.h" />
     <ClInclude Include="SpreadEfficacy.h" />
     <ClInclude Include="StageDifinition.h" />
+    <ClInclude Include="StageManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Victim.h" />

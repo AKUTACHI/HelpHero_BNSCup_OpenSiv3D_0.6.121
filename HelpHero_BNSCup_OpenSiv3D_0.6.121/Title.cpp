@@ -22,6 +22,10 @@ void Title::update()
 		Beeps::GetBeep(U"Title").stop();
 		Beeps::GetBeep(U"TitleEnter").playOneShot();
 	}
+	if (Key9.down()) {
+		Beeps::GetBeep(U"Title").stop();
+		changeScene(State::StageManager);
+	}
 }
 
 void Title::draw() const

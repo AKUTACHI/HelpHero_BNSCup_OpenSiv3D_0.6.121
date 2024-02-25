@@ -180,6 +180,15 @@
     <ClCompile Include="FireEfficacy.cpp">
       <Filter>Source Files\efficacy</Filter>
     </ClCompile>
+    <ClCompile Include="Beeps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StageManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -841,6 +850,15 @@
     </ClInclude>
     <ClInclude Include="FireEfficacy.h">
       <Filter>Header Files\efficacy</Filter>
+    </ClInclude>
+    <ClInclude Include="Beeps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StageManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,7 +17,7 @@ public:
 	void Draw();
 
 	void CheckCarry(Robot* _robot); //掴まれている時ロボットに追従する
-
+	void SetTexName(String _name);
 	Vec2 getPos() { return pos; }
 	Rect getRect() { return footholdRect; }
 
