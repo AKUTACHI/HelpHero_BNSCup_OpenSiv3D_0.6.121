@@ -97,6 +97,10 @@ void Game::update() {
 
 	player->DecisionMave();
 
+	if (victim->getRect().intersects(robot->getRect())) {
+		victim->isDeath = true;
+	}
+
 	if (victim->getRect().intersects(goalRect)) {//ゴールに被災者を持ってきたらクリア
 		if (!goal) {
 			Beeps::GetBeep(U"Success").playOneShot();
@@ -106,6 +110,8 @@ void Game::update() {
 			getData().currentStage = new Stage2();
 		if (getData().stage == 1)
 			getData().currentStage = new Stage2();
+		if (getData().stage == 2)
+			getData().currentStage = new Stage3();
 	}
 	if (goal && KeyEnter.down()) {
 		getData().stage++;

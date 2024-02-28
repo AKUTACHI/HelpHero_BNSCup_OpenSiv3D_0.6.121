@@ -8,6 +8,7 @@ class Victim//ちなみにvictimが被災者の英語らしい
 	Vec2 pos = { 1100,450 };
 	bool carry = false;//運ばれてる
 	Rect victimRect = { 1100,450,80,80 };
+	
 public:
 	Victim(P2World* _world, Player* _player);
 	void Update();
@@ -21,5 +22,6 @@ public:
 	Rect getRect() { return victimRect; }
 
 	Texture texVictim;
+	bool isDeath;
 };
 
