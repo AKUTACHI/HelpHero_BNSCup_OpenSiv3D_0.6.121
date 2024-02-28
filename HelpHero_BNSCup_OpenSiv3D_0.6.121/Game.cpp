@@ -112,8 +112,12 @@ void Game::update() {
 			getData().currentStage = new Stage2();
 		if (getData().stage == 2)
 			getData().currentStage = new Stage3();
+		if (getData().stage == 3);
 	}
 	if (goal && KeyEnter.down()) {
+		if (getData().stage == 3) {
+			changeScene(State::End);
+		};
 		getData().stage++;
 		Beeps::GetBeep(U"Bgm").stop();
 		Beeps::GetBeep(U"StageStart").stop();
