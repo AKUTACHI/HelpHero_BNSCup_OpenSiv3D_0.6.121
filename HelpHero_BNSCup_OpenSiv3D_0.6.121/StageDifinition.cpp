@@ -191,3 +191,16 @@ int32 BlankStage::GetStageNum()
 {
 	return 1;
 }
+
+Stage3::Stage3()
+{
+}
+
+void Stage3::SetUpToWorld(P2World& _world, Player* _player, Victim* _victim, P2Body* _ground, Array<Foothold*>* _footholds)
+{
+}
+
+int32 Stage3::GetStageNum()
+{
+	return int32();
+}

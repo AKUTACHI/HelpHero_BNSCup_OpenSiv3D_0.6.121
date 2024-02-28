@@ -1,37 +1,34 @@
 ﻿#include "stdafx.h"
-#include "Title.h"
+#include "ClearScene.h"
 #include "Beeps.h"
 
-Title::Title(const InitData& init) : IScene{ init }
+ClearScene::ClearScene(const InitData& init) : IScene{ init }
 {
-	Background = Texture{ U"textures/Title.png" };
+	Background = Texture{ U"textures/CLEAR_IMAGE.png" };
 	Beeps::GetBeep(U"Title").setVolume(0.3);
 	Beeps::GetBeep(U"Title").play();
 }
 
-Title::~Title()
+ClearScene::~ClearScene()
 {
 }
 
-void Title::update()
+void ClearScene::update()
 {
 	if (MouseL.down() || KeyEnter.down())
 	{
 		// ストーリーシーンに遷移
-		changeScene(State::Game);
+		changeScene(State::Title);
 		Beeps::GetBeep(U"Title").stop();
-		Beeps::GetBeep(U"TitleEnter").playOneShot();
+		//Beeps::GetBeep(U"TitleEnter").playOneShot();
 	}
 	if (Key9.down()) {
 		Beeps::GetBeep(U"Title").stop();
 		changeScene(State::StageManager);
 	}
-	if (Key6.down()) {
-		changeScene(State::End);
-	}
 }
 
-void Title::draw() const
+void ClearScene::draw() const
 {
 	Background.draw();
 }

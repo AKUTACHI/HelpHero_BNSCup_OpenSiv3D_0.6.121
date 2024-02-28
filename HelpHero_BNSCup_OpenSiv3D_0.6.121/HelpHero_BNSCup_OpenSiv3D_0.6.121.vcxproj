@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Beeps.cpp" />
+    <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Efficacy.cpp" />
     <ClCompile Include="FireEfficacy.cpp" />
@@ -329,6 +330,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beeps.h" />
+    <ClInclude Include="ClearScene.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Efficacy.h" />
     <ClInclude Include="FireEfficacy.h" />

@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "StageDifinition.h"
 #include "Beeps.h"
+#include "ClearScene.h"
 #include"StageManager.h"
 
 Array<Efficacy*>* ptrEffects;
@@ -35,6 +36,7 @@ void Main()
 	manager.add<Title>(State::Title);
 	manager.add<Game>(State::Game);
 	manager.add<StageManager>(State::StageManager);
+	manager.add<ClearScene>(State::End);
 	while (System::Update())
 	{
 		ClearPrint();
