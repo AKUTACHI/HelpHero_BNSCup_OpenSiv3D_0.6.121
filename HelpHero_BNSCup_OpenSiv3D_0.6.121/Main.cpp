@@ -36,7 +36,7 @@ void Main()
 	manager.add<Title>(State::Title);
 	manager.add<Game>(State::Game);
 	manager.add<StageManager>(State::StageManager);
-	manager.add<ClearScene>(State::End);
+	manager.add<ClearScene>(State::Clear);
 	while (System::Update())
 	{
 		ClearPrint();

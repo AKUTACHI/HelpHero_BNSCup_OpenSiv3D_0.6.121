@@ -52,6 +52,13 @@ void Player::Update()
 	if (body.getVelocity().x < -400)body.setVelocity(Vec2(-400, body.getVelocity().y));//速度制限
 	if (body.getVelocity().x > 400)body.setVelocity(Vec2(400, body.getVelocity().y));
 
+
+	if (body.getPos().x < 0) {
+		body.setPos(0, body.getPos().y);
+	}
+	if (body.getPos().x > 1280) {
+		body.setPos(1280, body.getPos().y);
+	}
 	if (dir != 0)
 	{
 		lastDir = dir;
@@ -59,7 +66,8 @@ void Player::Update()
 }
 
 void Player::DecisionMave() {
-
+	if (beforePos.x < 0)beforePos.x = 0;
+	if (beforePos.x > 1280)beforePos.x = 1280;
 	pos = beforePos;
 	playerRect.x = pos.x;
 	playerRect.y = pos.y;

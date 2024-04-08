@@ -42,20 +42,20 @@ Game::Game(const InitData& init)
 	Beeps::GetBeep(U"Flames").setVolume(0.3);
 	Beeps::GetBeep(U"Flames").play();
 
-	/*GenerateEffect(Vec2(0, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(100, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(200, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(300, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(400, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(500, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(0, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(100, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(200, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(300, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(400, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(500, 720), EffectVariant::Fire);
 
-	GenerateEffect(Vec2(600, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(700, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(800, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(900, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(1000, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(1100, 720), EffectVariant::Fire);
-	GenerateEffect(Vec2(1200, 720), EffectVariant::Fire);*/
+	//GenerateEffect(Vec2(600, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(700, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(800, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(900, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(1000, 720), EffectVariant::Fire);
+	//GenerateEffect(Vec2(1100, 720), EffectVariant::Fire);
+	GenerateEffect(Vec2(1200, 720), EffectVariant::Fire);
 }
 Game::~Game() {
 	delete player;
@@ -99,6 +99,8 @@ void Game::update() {
 
 	if (victim->getRect().intersects(robot->getRect())) {
 		victim->isDeath = true;
+		foothold.clear();
+		changeScene(State::Game);
 	}
 
 	if (victim->getRect().intersects(goalRect)) {//ゴールに被災者を持ってきたらクリア
@@ -109,22 +111,28 @@ void Game::update() {
 		if (getData().stage == 0)
 			getData().currentStage = new Stage2();
 		if (getData().stage == 1)
-			getData().currentStage = new Stage2();
+			getData().currentStage = new Stage3();
 		if (getData().stage == 2)
 			getData().currentStage = new Stage3();
-		if (getData().stage == 3);
+		if (getData().stage == 3) {
+		};
 	}
 	if (goal && KeyEnter.down()) {
-		if (getData().stage == 3) {
-			changeScene(State::End);
-		};
+		//changeScene(State::End);
+		
 		getData().stage++;
 		Beeps::GetBeep(U"Bgm").stop();
 		Beeps::GetBeep(U"StageStart").stop();
 		Beeps::GetBeep(U"Flames").stop();
-		changeScene(State::Game);
+		if (getData().stage == 3) {
+			changeScene(State::Clear);
+		}
+		else {
+			foothold.clear();
+			changeScene(State::Game); }
 	}
 	if (KeyR.down()) {
+		foothold.clear();
 		changeScene(State::Game, 0.3s);
 		Beeps::GetBeep(U"Bgm").stop();
 		Beeps::GetBeep(U"StageStart").stop();

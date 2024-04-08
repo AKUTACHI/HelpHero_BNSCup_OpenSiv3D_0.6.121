@@ -28,6 +28,7 @@ enum class State
 	Title,
 	Game,
 	StageManager,
+	Clear,
 	End
 };
 
