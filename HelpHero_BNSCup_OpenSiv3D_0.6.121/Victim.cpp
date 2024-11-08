@@ -33,6 +33,33 @@ void Victim::Update()
 		body.setFixedRotation(false);
 		body.setAwake(true);
 	}
+
+	// 接触が発生しているボディ
+	for (auto&& [pair, collision] : world->getCollisions())
+	{
+		// 各接触について
+		for (const auto& contact : collision)
+		{
+			// ダメージ量
+			const int32 damage = (contact.normalImpulse);
+
+			// ダメージ量が  以上なら
+			if (15000 < damage)
+			{
+				if (pair.a == body.id())
+				{
+					Print(damage);
+					isDeath = true;
+				}
+				else if (pair.b == body.id())
+				{
+					Print(damage);
+					isDeath = true;
+				}
+			}
+		}
+	}
+
 	pos.x = body.getPos().x - victimRect.w / 2;
 	pos.y = body.getPos().y - victimRect.h / 2;
 	victimRect.x = pos.x;

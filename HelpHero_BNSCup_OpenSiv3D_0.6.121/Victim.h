@@ -22,6 +22,6 @@ public:
 	Rect getRect() { return victimRect; }
 
 	Texture texVictim;
-	bool isDeath;
+	bool isDeath = false;
 };
 

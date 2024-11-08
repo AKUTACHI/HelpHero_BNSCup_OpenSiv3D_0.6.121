@@ -56,6 +56,8 @@ Game::Game(const InitData& init)
 	//GenerateEffect(Vec2(1000, 720), EffectVariant::Fire);
 	//GenerateEffect(Vec2(1100, 720), EffectVariant::Fire);
 	GenerateEffect(Vec2(1200, 720), EffectVariant::Fire);
+
+	camera = new Camera2D(Scene::Center(), 1, CameraControl(0));
 }
 Game::~Game() {
 	delete player;
@@ -67,6 +69,7 @@ Game::~Game() {
 }
 
 void Game::update() {
+	camera->update();
 	for (accumulatorSec += Scene::DeltaTime(); stepSec <= accumulatorSec; accumulatorSec -= stepSec)
 	{
 		// 2D 物理演算のワールドを更新
@@ -82,6 +85,7 @@ void Game::update() {
 
 	player->Update();
 	robot->Update();
+	robot->SwingCamera(camera);
 	victim->Update();
 	robot->CheckGround(ground);
 	for (auto foot : foothold) {
@@ -93,7 +97,10 @@ void Game::update() {
 
 	victim->carry_move(player->getNowPos());
 
-
+	if (victim->isDeath == true) {
+		foothold.clear();
+		changeScene(State::Game);
+	}
 
 	player->DecisionMave();
 
@@ -173,32 +180,38 @@ void Game::draw() const {
 	texBack00Outlook.draw();
 	texBack01Robot.draw(BackRobotPos, ColorF{ 1.0,1.0,1.0,0.85 });
 	texBack02Building.draw(ColorF{1.0,1.0,1.0,0.7});
-	player->Draw();
-	robot->Draw();
-	victim->Draw();
-	player->Draw();
-	for (auto& foot : foothold) {
-		if (foot->IsValid()) {
-			foot->Draw();
+
+	{//カメラで移動するオブジェクト
+		const auto cameraTransform = camera->createTransformer();
+
+		player->Draw();
+		robot->Draw();
+		victim->Draw();
+		player->Draw();
+		for (auto& foot : foothold) {
+			if (foot->IsValid()) {
+				foot->Draw();
+			}
+		}
+		Rect{ 0,400,150,200 }.draw(ColorF{ 0.9,0.7,0,0.5 });//ゴール
+
+		for (const auto& body : bodies)//P2Bodyの描画
+		{
+			body.draw();
+		}
+		ground.draw();
+
+		for (int32 i = 0; i < 12; i++)
+		{
+			Rect{ 125 * i,600,125,125 }(texGround).draw();
+		}
+
+		for (const auto& item : effects)
+		{
+			item->Draw();
 		}
 	}
-	Rect{ 0,400,150,200 }.draw(ColorF{ 0.9,0.7,0,0.5 });//ゴール
 
-	for (const auto& body : bodies)//P2Bodyの描画
-	{
-		body.draw();
-	}
-	ground.draw();
-
-	for (int32 i = 0; i < 12; i++)
-	{
-		Rect{ 125 * i,600,125,125 }(texGround).draw();
-	}
-
-	for (const auto& item : effects)
-	{
-		item->Draw();
-	}
 	if (goal) {//ゴールに被災者を持ってきたらクリア
 		font(U"Clear!").draw(64, Vec2{ 20, 340 }, ColorF{ 0.2, 0.4, 0.8 });
 		font(U"Enter to Next Stage").draw(64, Vec2{ 500, 200 }, ColorF{ 0.8, 1, 0.8 });

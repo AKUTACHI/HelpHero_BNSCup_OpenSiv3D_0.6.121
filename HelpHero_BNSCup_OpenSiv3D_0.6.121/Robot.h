@@ -24,6 +24,8 @@ public:
 	void Update();
 	void Draw();
 	bool CheckGround(const P2Body ground);
+	void SwingCamera(Camera2D* mCamera);
+
 	float getSpeed() { return speed; }
 	Vec2 getPos() { return pos; }
 	Rect getRect() { return robotRect; }

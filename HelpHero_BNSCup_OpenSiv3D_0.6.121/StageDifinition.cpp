@@ -11,6 +11,9 @@ void StageDifinition::ResetWorld(P2World& _world)
 
 void StageDifinition::ReadStageData(String fileName,P2World& _world, Array<Foothold*>* _footholds)
 {
+	Grid<int32> FPos{ 4,0,-1 };
+	FootholdPos = FPos;
+
 	TextReader reader{fileName };
 
 	if (not reader)
@@ -68,7 +71,7 @@ void Stage1::SetUpToWorld(P2World& _world, Player* _player, Victim* _victim, P2B
 {
 	
 	Foothold* instance[10];
-	instance[0] = new Foothold();
+	/*instance[0] = new Foothold();
 	instance[0]->set({450,400,200,100}, false, &_world);
 	instance[1] = new Foothold();
 	instance[1]->set({ 500,250,150,100 }, false, &_world);
@@ -91,9 +94,9 @@ void Stage1::SetUpToWorld(P2World& _world, Player* _player, Victim* _victim, P2B
 	*_footholds << instance[4];
 	*_footholds << instance[5];
 	*_footholds << instance[6];
-	*_footholds << instance[7];
+	*_footholds << instance[7];*/
 
-	//ReadStageData(U"Stage1.txt", _world, _footholds);
+	ReadStageData(U"Stage1.txt", _world, _footholds);
 
 	*_ground = _world.createLine(P2Static, Vec2{ 0, 0 }, Line{ -600, 600, 1300, 600 });
 }

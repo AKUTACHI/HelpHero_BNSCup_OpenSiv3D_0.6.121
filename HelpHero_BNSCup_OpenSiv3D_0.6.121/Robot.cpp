@@ -38,6 +38,8 @@ void Robot::Update()
 	else if (up) {
 		pos.y -= Scene::DeltaTime() * speed;
 		body.setPos(Vec2{ robotRect.x + robotRect.w / 2,robotRect.y + robotRect.h });
+
+
 		//body.moveBy(Vec2(0, Scene::DeltaTime() * -speed));
 		if (body.getPos().y < -50) {
 			ready = true;
@@ -83,4 +85,10 @@ bool Robot::CheckGround(const P2Body ground)
 			Print(body.getMass());
 		}
 	return false;
+}
+
+void Robot::SwingCamera(Camera2D* mCamera) {
+	if (up) {
+		mCamera->setCenter(Vec2(Scene::Center().x + Periodic::Triangle1_1(0.3), Scene::Center().y));
+	}
 }

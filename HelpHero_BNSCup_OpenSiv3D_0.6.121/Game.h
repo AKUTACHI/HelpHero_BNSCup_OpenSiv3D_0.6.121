@@ -49,5 +49,8 @@ private:
 	Texture texBack02Building;
 	Vec2 BackRobotPos;
 	bool steped = false;
+	HashTable<P2BodyID, int32> hashTable;
+
+	Camera2D* camera;
 };
 
