@@ -18,13 +18,9 @@ public:
 	void update() override;
 
 	void draw() const override;
-
-	//衝突判定
-		//0:左1:右2:上3:下
-	void MotionHit(
-		double NowPosL, double NowPosR, double NowPosU, double NowPosD,
-		double NextPosL, double NextPosR, double NextPosU, double NextPosD,
-		double partnerPos1, double partnerPos2, double partnerPos3, double partnerPos4, int IsMario);
+	void CheckGoal();
+	void BackGroundUpdate();
+	void InputsUpdate();
 private:
 	const Font font{ FontMethod::MSDF, 48, Typeface::Bold };
 

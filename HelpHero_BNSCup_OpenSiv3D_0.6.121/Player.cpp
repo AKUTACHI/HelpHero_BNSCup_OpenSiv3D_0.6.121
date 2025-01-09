@@ -19,7 +19,7 @@ Player::Player(P2World* _world)
 void Player::Update()
 {
 	dir = 0;
-	beforePos = pos;
+	beforePos = pos;//接触判定用位置の更新
 	if (!KeyShift.pressed()) {//Shift中はロボットの操作　プレイヤーは動かない
 		
 		if (KeyW.down() && abs(body.getVelocity().y)<=0.01) {//取りあえずｙ速度がほぼ0の状態でジャンプ可能に

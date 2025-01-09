@@ -141,24 +141,6 @@ void StageManager::update() {
 
 
 	player->DecisionMave();
-
-	//if (victim->getRect().intersects(goalRect)) {//ゴールに被災者を持ってきたらクリア
-	//	if (!goal) {
-	//		Beeps::GetBeep(U"Success").playOneShot();
-	//	}
-	//	goal = true;
-	//	if (getData().stage == 0)
-	//		getData().currentStage = new Stage2();
-	//	if (getData().stage == 1)
-	//		getData().currentStage = new Stage2();
-	//}
-	/*if (goal && KeyEnter.down()) {
-		getData().stage++;
-		Beeps::GetBeep(U"Bgm").stop();
-		Beeps::GetBeep(U"StageStart").stop();
-		Beeps::GetBeep(U"Flames").stop();
-		changeScene(State::Game);
-	}*/
 	if (KeyR.down()) {
 		changeScene(State::Title, 0.3s);
 		/*Beeps::GetBeep(U"Bgm").stop();
@@ -303,7 +285,7 @@ void StageManager::Save() {
 		throw Error{ U"Failed to open a write file" };
 	}
 	else {
-
+		//障害物の座標を書き込み
 		for (int i = 0; i < loadFootPos.height(); i++) {
 			Foothold* instance = new Foothold();
 			instance->set({ loadFootPos[i][0],loadFootPos[i][1],loadFootPos[i][2],loadFootPos[i][3] }, false, &world);
@@ -313,38 +295,6 @@ void StageManager::Save() {
 			str = ToString(loadFootPos[i][0]) + U" " + ToString(loadFootPos[i][1]) + U" " + ToString(loadFootPos[i][2]) + U" " + ToString(loadFootPos[i][3]);
 			writer.writeln(str);
 		}
-
-
-
-		//reader.open(U"testStage");
-		//String line;
-		//// 1 行ずつ読み込む
-		//while (reader.readLine(line))
-		//{
-		//	// 空の文字列だった場合はスキップする
-		//	if (not line)
-		//	{
-		//		continue;
-		//	}
-
-		//	// 空白文字で分割する
-		//	const Array<String> items = line.split(U' ');
-
-		//	// 想定した要素数でなかった場合はエラーを投げる
-		//	if (items.size() != 4)
-		//	{
-		//		throw Error{ U"Invalid format" };
-		//	}
-
-		//	// データを格納する
-		//	Foothold* fh = new Foothold();
-		//	fh->set({ Parse<int>(items[0]), Parse<int>(items[1]), Parse<int>(items[2]), Parse<int>(items[3]) }, false, &world);
-		//	foothold << fh;
-		//	
-		//}
 	}
-	
-
-	
 	
 }

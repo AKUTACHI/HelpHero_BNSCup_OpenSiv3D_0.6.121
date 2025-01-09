@@ -76,12 +76,6 @@ void Game::update() {
 		world.update(stepSec);
 	}
 
-	if (KeyL.down())//物理のデバッグ用
-	{
-		// クリックした場所に半径 10 cm のボールを作成
-		bodies << world.createCircle(P2Dynamic, Cursor::PosF(), 10);
-	}
-
 
 	player->Update();
 	robot->Update();
@@ -99,6 +93,7 @@ void Game::update() {
 
 	if (victim->isDeath == true) {
 		foothold.clear();
+		Beeps::GetBeep(U"Scream").playOneShot();
 		changeScene(State::Game);
 	}
 
@@ -107,6 +102,7 @@ void Game::update() {
 	if (victim->getRect().intersects(robot->getRect())) {
 		victim->isDeath = true;
 		foothold.clear();
+		Beeps::GetBeep(U"Scream").playOneShot();
 		changeScene(State::Game);
 	}
 
@@ -124,27 +120,8 @@ void Game::update() {
 		if (getData().stage == 3) {
 		};
 	}
-	if (goal && KeyEnter.down()) {
-		//changeScene(State::End);
-		
-		getData().stage++;
-		Beeps::GetBeep(U"Bgm").stop();
-		Beeps::GetBeep(U"StageStart").stop();
-		Beeps::GetBeep(U"Flames").stop();
-		if (getData().stage == 3) {
-			changeScene(State::Clear);
-		}
-		else {
-			foothold.clear();
-			changeScene(State::Game); }
-	}
-	if (KeyR.down()) {
-		foothold.clear();
-		changeScene(State::Game, 0.3s);
-		Beeps::GetBeep(U"Bgm").stop();
-		Beeps::GetBeep(U"StageStart").stop();
-		Beeps::GetBeep(U"Flames").stop();
-	}
+
+	InputsUpdate();
 
 	//if (KeyI.down())GenerateEffect(Vec2(400, 400), EffectVariant::Fire);
 
@@ -155,25 +132,8 @@ void Game::update() {
 
 	//effects.remove_if([](Efficacy* item) { return !item->IsValid(); });
 
-
-	//背景ロボット位置更新
-	BackRobotPos = Vec2{ robot->getPos().x , 0 };
-	if (Math::Sin(BackRobotPos.x / 50) > 0.9)
-	{
-		if (!steped)
-		{
-			Beeps::GetBeep(U"FootStepRobot").playOneShot();
-		}
-		steped = true;
-	}
-	if (Math::Sin(BackRobotPos.x / 50) < 0)
-	{
-		steped = false;
-	}
-	//Print << Math::Sin(BackRobotPos.x / 50);
-	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
-	BackRobotPos.x -= 1200;
-	BackRobotPos.y -= 200;
+	BackGroundUpdate();
+	
 }
 
 void Game::draw() const {
@@ -221,74 +181,58 @@ void Game::draw() const {
 	font(U"[A],[D]:移動  [Shift][A],[Shift][D]:ロボット操作　[Enter]:持ち上げ　[Shift][Enter]:ロボット持ち上げ [R]:リスタート").drawBaseAt(20, Scene::Rect().bottomCenter() + Vec2{ 0,-20 }, ColorF{ 1.0,0.2,0 });
 }
 
-//衝突判定
-// 使い方
-// １：引数を入れる
-// 上から
-// 現在の座標
-// 確認用の座標
-// 衝突する対象の座標
-// ２：Common.hに書いてある//衝突相手//の欄にあるものから適切な物を引数IsMarioに入れる
-// ３：衝突した時に走るif分の中にif (IsMario == ○○)を追加し、使いたい処理を書く
-	//0:左1:右2:上3:下
-void Game::MotionHit(
-	double NowPosL, double NowPosR, double NowPosU, double NowPosD,
-	double NextPosL, double NextPosR, double NextPosU, double NextPosD,
-	double partnerPosL, double partnerPosR, double partnerPosU, double partnerPosD, int IsMario) {
-	if (NextPosL <= partnerPosR && //プレイヤーから左側面の衝突
-		NextPosR >= partnerPosL && //プレイヤーから右側面の衝突
-		NextPosU <= partnerPosD && //プレイヤーから上側面の衝突
-		NextPosD >= partnerPosU) {//プレイヤーから下側面の衝突
+void Game::CheckGoal()
+{
+}
 
-		if (IsMario == P_V) {
-			if (KeyP.down()) {
-				victim->carry_flip();
-			}
+void Game::BackGroundUpdate() {
+	//背景ロボット位置更新
+	BackRobotPos = Vec2{ robot->getPos().x , 0 };
+	if (Math::Sin(BackRobotPos.x / 50) > 0.9)
+	{
+		if (!steped)
+		{
+			Beeps::GetBeep(U"FootStepRobot").playOneShot();
 		}
+		steped = true;
+	}
+	if (Math::Sin(BackRobotPos.x / 50) < 0)
+	{
+		steped = false;
+	}
+	//Print << Math::Sin(BackRobotPos.x / 50);
+	BackRobotPos.y = Math::Sin(BackRobotPos.x / 50) * 50;
+	BackRobotPos.x -= 1200;
+	BackRobotPos.y -= 200;
+}
 
-		//プレイヤーから横方向の衝突
-		if (NowPosU <= partnerPosD &&//現プレイヤー上がブロック下より上な時
-			NowPosD >= partnerPosU) {//現プレイヤー下がブロック上より下
-
-			//プレイヤーから左方向の衝突
-			if (NowPosL >= partnerPosR &&//現プレイヤー左がブロック右より右な時
-				NowPosR >= partnerPosL) {//現プレイヤー右がブロック左より右な時
-				if (IsMario == P_B) {
-
-				}
-			}
-			//プレイヤーから右方向の衝突
-			if (NowPosL <= partnerPosR &&//現プレイヤー左がブロック右より左な時
-					 NowPosR <= partnerPosL) {//現プレイヤー右がブロック左より左な時
-				if (IsMario == P_B) {
-
-				}
-			}
-
-		}
-
-		//プレイヤーから縦方向の衝突
-		if (NowPosL <= partnerPosR &&//現プレイヤー左がブロック右より左な時
-			NowPosR >= partnerPosL) {//現プレイヤー右がブロック左より右な時
-
-			//プレイヤーから上方向の衝突
-			if (NowPosU >= partnerPosD &&//現プレイヤー上がブロック下より下な時
-				NowPosD >= partnerPosU) {//現プレイヤー下がブロック上より下
-				if (IsMario == P_B) {
-
-				}
-			}
-			//プレイヤーから下方向の衝突
-
-			if (NowPosU <= partnerPosD &&//現プレイヤー上がブロック下より上な時
-				 NowPosD <= partnerPosU) {//現プレイヤー下がブロック上より上
-				if (IsMario == P_B) {
-					player->CheckGround();
-				}
-			}
-		}
+void Game::InputsUpdate() {
+	if (KeyL.down())//物理のデバッグ用
+	{
+		// クリックした場所に半径 10 cm のボールを作成
+		bodies << world.createCircle(P2Dynamic, Cursor::PosF(), 10);
 	}
 
+	if (goal && KeyEnter.down()) {
+		//changeScene(State::End);
 
-
+		getData().stage++;
+		Beeps::GetBeep(U"Bgm").stop();
+		Beeps::GetBeep(U"StageStart").stop();
+		Beeps::GetBeep(U"Flames").stop();
+		if (getData().stage == 3) {
+			changeScene(State::Clear);
+		}
+		else {
+			foothold.clear();
+			changeScene(State::Game);
+		}
+	}
+	if (KeyR.down()) {
+		foothold.clear();
+		changeScene(State::Game, 0.3s);
+		Beeps::GetBeep(U"Bgm").stop();
+		Beeps::GetBeep(U"StageStart").stop();
+		Beeps::GetBeep(U"Flames").stop();
+	}
 }

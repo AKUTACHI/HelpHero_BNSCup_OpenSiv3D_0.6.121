@@ -7,7 +7,7 @@ class Robot
 	P2Body child;
 	Stopwatch timer;
 	Vec2 pos = { 100,-830 };
-	double arm_contraction = 0;//アームの下げる数値
+	double arm_contraction = 4;//アームの下げる数値
 
 
 	bool up = false;//アームを上げる

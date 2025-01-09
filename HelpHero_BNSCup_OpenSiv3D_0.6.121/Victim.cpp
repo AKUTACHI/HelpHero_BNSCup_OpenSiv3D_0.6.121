@@ -49,11 +49,13 @@ void Victim::Update()
 				if (pair.a == body.id())
 				{
 					Print(damage);
+					Beeps::GetBeep(U"Scream").playOneShot();
 					isDeath = true;
 				}
 				else if (pair.b == body.id())
 				{
 					Print(damage);
+					Beeps::GetBeep(U"Scream").playOneShot();
 					isDeath = true;
 				}
 			}

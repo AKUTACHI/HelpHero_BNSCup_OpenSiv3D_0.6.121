@@ -27,6 +27,7 @@ void Main()
 	Beeps::AddBeep(U"Success", Audio{ U"audios/Success.mp3" });
 	Beeps::AddBeep(U"Bgm", Audio{ U"audios/Bgm.mp3"  ,Loop::Yes });
 	Beeps::AddBeep(U"Flames", Audio{ U"audios/Flames.mp3",Loop::Yes });
+	Beeps::AddBeep(U"Scream", Audio{ U"audios/「キャー」.mp3" });
 
 	// シーンマネージャーを作成
 	App manager;

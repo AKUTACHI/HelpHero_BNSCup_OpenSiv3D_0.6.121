@@ -24,7 +24,7 @@ void Robot::Update()
 			pos.x += speed * Scene::DeltaTime();
 			//body.moveBy(Vec2(speed * Scene::DeltaTime(), 0));
 		}
-		if (KeyEnter.down()) {
+		if (KeyEnter.down()) {//腕降下開始
 			ready = false;
 			Beeps::GetBeep(U"ArmDown").playOneShot();
 			timer.restart();
@@ -32,7 +32,7 @@ void Robot::Update()
 	}
 
 	if (!ready && !up) {
-		pos.y += Scene::DeltaTime() * speed*4;
+		pos.y += Scene::DeltaTime() * speed*arm_contraction;//降下中の移動
 		//body.moveBy(Vec2(0, Scene::DeltaTime() * speed));
 	}
 	else if (up) {
@@ -47,10 +47,10 @@ void Robot::Update()
 			body.release();
 		}
 	}
-	robotRect.x = pos.x;//反映
+	robotRect.x = pos.x;//物理オブジェクトに反映
 	robotRect.y = pos.y;
 	area = robotRect;
-	area.h += 750;
+	area.h += 750;//掘削予定範囲の更新
 }
 
 void Robot::Draw()

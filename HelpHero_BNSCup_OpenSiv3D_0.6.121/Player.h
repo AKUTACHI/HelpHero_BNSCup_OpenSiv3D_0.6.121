@@ -10,7 +10,7 @@ class Player
 	Rect playerRect = { 0,0,100,100 };
 	bool isJump;
 
-	int32 dir;
+	int32 dir;//方向確認用
 	int32 lastDir = 1;
 
 public:
