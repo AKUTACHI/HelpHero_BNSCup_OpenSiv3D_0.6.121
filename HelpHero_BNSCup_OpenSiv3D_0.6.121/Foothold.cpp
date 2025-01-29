@@ -38,25 +38,19 @@ void Foothold::Draw()
 }
 
 void Foothold::CheckCarry(Robot* _robot) {//掴まれている時ロボットに追従する
-	/*Vec2 rPos = _robot->getBody().getPos();
-	Vec2 r
-	if(rPos.x <pos.x && rPos.x+rPos.)*/
 
 	for (auto [pair, collision] : world->getCollisions())
 	{
 		if ((pair.a == body.id() && _robot->getBody().id() == pair.b) || (pair.b == body.id() && pair.a == _robot->getBody().id()))
-		{
+		{//ロボットのコリジョンと接触時
 			if (!carry) {
 				Beeps::GetBeep(U"Rock").play();
 				carry = true;
 			}
-			
-			//body.applyLinearImpulse(Vec2{ 0,-1500 * Scene::DeltaTime() });
 		}
 	}
-
 	if (carry) {
-		body.setAwake(false);
+		body.setAwake(false);//物理オフにして強制移動に
 		body.setPos(Vec2(body.getPos().x, body.getPos().y - (_robot->getSpeed() * Scene::DeltaTime())));
 	}
 }

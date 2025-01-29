@@ -42,19 +42,7 @@ Game::Game(const InitData& init)
 	Beeps::GetBeep(U"Flames").setVolume(0.3);
 	Beeps::GetBeep(U"Flames").play();
 
-	//GenerateEffect(Vec2(0, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(100, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(200, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(300, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(400, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(500, 720), EffectVariant::Fire);
-
-	//GenerateEffect(Vec2(600, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(700, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(800, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(900, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(1000, 720), EffectVariant::Fire);
-	//GenerateEffect(Vec2(1100, 720), EffectVariant::Fire);
+	
 	GenerateEffect(Vec2(1200, 720), EffectVariant::Fire);
 
 	camera = new Camera2D(Scene::Center(), 1, CameraControl(0));
